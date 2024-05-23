@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "360405872802",
+    "project_id": "aspartec-a810d",
+    "storage_bucket": "aspartec-a810d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:360405872802:android:fedcd1f0a5da389b6927fb",
+        "android_client_info": {
+          "package_name": "mx.tecnm.cdhidalgo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0e1skaP9eIsE0bSuomhKY3GwlS9Aw3Qk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
