@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       routerConfig: routerConfig,
       title: 'Aspartec',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
       darkTheme: ThemeData(
