@@ -1,4 +1,6 @@
-import 'package:aspartec/model/entities/user_entity.dart';
+import 'dart:io';
+
+import '../entities/user_entity.dart';
 
 abstract class UserRepository {
   Future login(String email, String password) async {}
@@ -8,4 +10,7 @@ abstract class UserRepository {
   Future registerOrUpdateData(UserEntity user) async {}
   Future deleteUser() async {}
   Future getData(String email) async {}
+  updateAvatar(File file) {}
+  Future getUrlFile(String path) async {}
+  Future updateDataUrl(String url) async {}
 }

@@ -1,9 +1,15 @@
-import 'package:aspartec/view/widgets/avatar_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../controller/login/logout_controller.dart';
+import '../../model/entities/user_entity.dart';
+import '../widgets/avatar_widget.dart';
+import 'update_avatar_view.dart';
 
 class ProfileView extends StatelessWidget {
   static const String routeName = 'profile';
-  const ProfileView({super.key});
+  final UserEntity user;
+  const ProfileView({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +20,13 @@ class ProfileView extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          const AvatarWidget(maxRadius: 150),
+          AvatarWidget(maxRadius: 150, url: user.photoUrl),
           const SizedBox(height: 15),
           ListTile(
             leading: const Icon(Icons.add_photo_alternate_rounded),
             title: const Text('Actualizar foto de perfil'),
             trailing: const Icon(Icons.arrow_forward_ios_rounded),
-            onTap: () {},
+            onTap: () => context.pushNamed(UpdateAvatarView.routeName, extra: { 'user' : user })
           ),
           ListTile(
             leading: const Icon(Icons.key_rounded),
@@ -42,12 +48,7 @@ class ProfileView extends StatelessWidget {
             onTap: () {},
           ),
           const Divider(),
-          ListTile(
-            leading: const Icon(Icons.logout_rounded),
-            title: const Text('Cerrar sesión'),
-            trailing: const Icon(Icons.arrow_forward_ios_rounded),
-            onTap: () {},
-          ),
+          const LogoutController()
         ],
       ),
     );

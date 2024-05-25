@@ -1,11 +1,18 @@
-import 'package:aspartec/model/entities/user_entity.dart';
-import 'package:aspartec/model/repositories/user_repository.dart';
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:path/path.dart' as p;
+
+import '../entities/user_entity.dart';
+import '../repositories/user_repository.dart';
 
 class UserRepositoryImpl implements UserRepository {
   final _auth = FirebaseAuth.instance;
   final _firestore = FirebaseFirestore.instance;
+  final _storage = FirebaseStorage.instance;
+
   final String _collection = 'usuarios';
 
   @override
@@ -68,6 +75,33 @@ class UserRepositoryImpl implements UserRepository {
     try {
       await _auth.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
+      throw Exception(e.code);
+    }
+  }
+
+  @override
+  UploadTask updateAvatar(File file) {
+    final path = _storage.ref('avatars/${_auth.currentUser?.email}');
+    final uploadTask = path.putFile(file,
+        SettableMetadata(contentType: "image/${p.extension(file.path).substring(1)}")
+    );
+    return uploadTask;
+  }
+
+  @override
+  Future<String> getUrlFile(String path) async {
+    try {
+      return await _storage.ref(path).getDownloadURL();
+    } on FirebaseException catch (e) {
+      throw Exception(e.code);
+    }
+  }
+
+  @override
+  Future<void> updateDataUrl(String url) async {
+    try {
+      await _firestore.collection(_collection).doc(_auth.currentUser?.email).update({'photoUrl': url});
+    } on FirebaseException catch (e) {
       throw Exception(e.code);
     }
   }

@@ -29,8 +29,8 @@ class StudentHomeView extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
               child: GestureDetector(
-                onTap: () => context.pushNamed(ProfileView.routeName),
-                child: const AvatarWidget()
+                onTap: () => context.pushNamed(ProfileView.routeName, extra: { 'user': user }),
+                child: AvatarWidget(url: user.photoUrl)
               )
             ),
           ],

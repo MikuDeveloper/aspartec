@@ -24,7 +24,7 @@ class ShowAlerts {
     );
   }
 
-  static Future<bool?> openLogoutDialog(BuildContext context) async {
+  static Future<bool> openLogoutDialog(BuildContext context) async {
     return await showDialog<bool>(
       context: context,
       barrierDismissible: true,

@@ -26,7 +26,6 @@ class _LoginControllerState extends State<LoginController> implements Loading {
   final userRepository = UserRepositoryImpl();
 
   void _login () {
-    print(widget.passwordController.text);
     onLoading();
     userRepository.login(
       widget.emailController.text.trim(),

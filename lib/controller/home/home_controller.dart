@@ -19,9 +19,9 @@ class HomeController extends ConsumerWidget {
       data: (user) {
         switch(user.type) {
           case 'advisor':
-            ref.read(avatarProvider.notifier).state = user.photoUrl;
             return AdvisorHomeView(user: user);
-          case 'student': return StudentHomeView(user: user, hiddenBar: false);
+          case 'student':
+            return StudentHomeView(user: user, hiddenBar: false);
           //case 'admin': return ;
           default: return const LoginView();
         }

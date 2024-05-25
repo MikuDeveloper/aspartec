@@ -27,4 +27,10 @@ class UserDataNotifier extends StateNotifier<AsyncValue<UserEntity>> {
       }
     }
   }
+
+  void setData(UserEntity user) {
+    if(mounted) {
+      state = AsyncValue.data(user);
+    }
+  }
 }
