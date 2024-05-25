@@ -1,14 +1,14 @@
-import 'package:aspartec/controller/utils/loading.dart';
-import 'package:aspartec/model/entities/user_entity.dart';
-import 'package:aspartec/model/implementation/user_repository_impl.dart';
-import 'package:aspartec/providers/error_provider.dart';
-import 'package:aspartec/view/home/home_view.dart';
-import 'package:aspartec/view/utils/show_alerts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../model/entities/user_entity.dart';
+import '../../model/implementation/user_repository_impl.dart';
+import '../../providers/error_provider.dart';
 import '../../view/utils/error_messages.dart';
+import '../../view/utils/show_alerts.dart';
+import '../home/home_controller.dart';
+import '../utils/loading.dart';
 
 class RegisterController extends StatefulWidget {
   final GlobalKey<FormState> formKey;
@@ -37,7 +37,7 @@ class _RegisterControllerState extends State<RegisterController> implements Load
   }
 
   void _goToHome() {
-    context.goNamed(HomeView.routeName);
+    context.goNamed(HomeController.routeName);
   }
 
   void _showAuthError(String code) {

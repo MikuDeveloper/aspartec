@@ -118,7 +118,7 @@ class _LoginFormState extends State<LoginForm> {
           LoginController(
             formKey: _loginFormKey,
             emailController: _emailController,
-            passwordController: _emailController
+            passwordController: _passwordController
           ),
           const SizedBox(height: 20),
           const Row(

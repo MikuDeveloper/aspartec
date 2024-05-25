@@ -1,8 +1,11 @@
-import 'package:aspartec/view/home/home_view.dart';
-import 'package:aspartec/view/login/login_view.dart';
-import 'package:aspartec/view/profile/profile_view.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+
 import 'package:go_router/go_router.dart';
+
+import '../controller/home/home_controller.dart';
+import '../view/login/login_view.dart';
+import '../view/profile/profile_view.dart';
 
 final routerConfig = GoRouter(
   initialLocation: '/login',
@@ -10,11 +13,14 @@ final routerConfig = GoRouter(
     GoRoute(
       path: '/login',
       name: LoginView.routeName,
-      builder: (context, state) => const LoginView()
+      builder: (context, state) => const LoginView(),
+      redirect: (context, state) {
+        return FirebaseAuth.instance.currentUser?.email == null ? '/login' : '/home';
+      }
     ),
     GoRoute(
       path: '/home',
-      name: HomeView.routeName,
+      name: HomeController.routeName,
       pageBuilder: (context, state) => CustomTransitionPage(
         key: state.pageKey,
         transitionDuration: const Duration(milliseconds: 400),
@@ -25,7 +31,7 @@ final routerConfig = GoRouter(
             ),
             child: child,
           ),
-        child: const HomeView()
+        child: const HomeController()
       ),
       routes: [
         GoRoute(
@@ -44,5 +50,8 @@ final routerConfig = GoRouter(
         )
       ]
     )
-  ]
+  ],
+  redirect: (context, state) {
+    return FirebaseAuth.instance.currentUser?.email == null ? '/login' : null;
+  }
 );

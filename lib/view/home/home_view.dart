@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 
+import '../../model/entities/user_entity.dart';
+
 class HomeView extends StatelessWidget {
-  static const String routeName = 'home';
-  const HomeView({super.key});
+  final UserEntity user;
+  const HomeView({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Placeholder(),
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        title: const Text(''),
+      ),
+      body: const Placeholder(),
     );
   }
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 2200 2200">
+  <defs>
+    <radialGradient id="radial-gradient" cx="638.91" cy="639.56" fx="638.91" fy="639.56" r="1619.74" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#63dffc"/>
+      <stop offset="1" stop-color="#3f7cd1"/>
+    </radialGradient>
+    <radialGradient id="radial-gradient-2" cx="1001.66" cy="590.53" fx="1001.66" fy="590.53" r="619.1" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#d1d1d1"/>
+    </radialGradient>
+    <radialGradient id="radial-gradient-3" cx="926.55" cy="1564.65" fx="926.55" fy="1564.65" r="869.55" xlink:href="#radial-gradient-2"/>
+  </defs>
+  <g id="Background">
+    <rect width="2200" height="2200" style="fill: none; stroke-width: 0px;"/>
+  </g>
+  <g id="Objects">
+    <g>
+      <path d="M2134,1106.5c0,277.65-109.39,529.76-287.42,715.57-188.3,196.56-453.4,318.93-747.08,318.93s-558.78-122.38-747.08-318.93c-178.03-185.81-287.42-437.92-287.42-715.57,0-571.33,463.17-1034.5,1034.5-1034.5s1034.5,463.17,1034.5,1034.5Z" style="fill: url(#radial-gradient); stroke-width: 0px;"/>
+      <circle cx="1099.5" cy="739.4" r="422.62" style="fill: url(#radial-gradient-2); stroke-width: 0px;"/>
+      <path d="M1846.58,1822.07c-188.3,196.56-453.4,318.93-747.08,318.93s-558.78-122.38-747.08-318.93c106.34-310.39,400.66-533.51,747.08-533.51s640.75,223.12,747.08,533.51Z" style="fill: url(#radial-gradient-3); stroke-width: 0px;"/>
+    </g>
+  </g>
+</svg>

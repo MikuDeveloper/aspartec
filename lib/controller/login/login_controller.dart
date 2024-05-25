@@ -1,8 +1,8 @@
+import 'package:aspartec/controller/home/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../model/implementation/user_repository_impl.dart';
-import '../../view/home/home_view.dart';
 import '../../view/utils/error_messages.dart';
 import '../../view/utils/show_alerts.dart';
 import '../utils/loading.dart';
@@ -26,6 +26,7 @@ class _LoginControllerState extends State<LoginController> implements Loading {
   final userRepository = UserRepositoryImpl();
 
   void _login () {
+    print(widget.passwordController.text);
     onLoading();
     userRepository.login(
       widget.emailController.text.trim(),
@@ -36,7 +37,7 @@ class _LoginControllerState extends State<LoginController> implements Loading {
   }
 
   void _goToHome() {
-    context.goNamed(HomeView.routeName);
+    context.goNamed(HomeController.routeName);
   }
 
   void _showError(String code) {
