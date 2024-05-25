@@ -1,8 +1,10 @@
-import 'package:aspartec/controller/utils/loading.dart';
-import 'package:aspartec/view/utils/show_alerts.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../model/implementation/user_repository_impl.dart';
+import '../../view/utils/error_messages.dart';
+import '../../view/utils/show_alerts.dart';
+import '../utils/loading.dart';
 
 class ForgotPasswordController extends StatefulWidget {
   final GlobalKey<FormState> formKey;
@@ -18,18 +20,13 @@ class ForgotPasswordController extends StatefulWidget {
 }
 
 class _ForgotPasswordControllerState extends State<ForgotPasswordController> implements Loading {
-  final auth = FirebaseAuth.instance;
+  final userRepository = UserRepositoryImpl();
 
   void _sendEmail() async {
-    try {
-      onLoading();
-      await auth.sendPasswordResetEmail(email: widget.emailController.text.trim());
-      offLoading();
-      _back();
-    } on FirebaseAuthException catch (e) {
-      offLoading();
-      _showError(e.code);
-    }
+    userRepository.sendEmailForReset(widget.emailController.text.trim())
+        .then((_) => _back())
+        .catchError((error, stackTrace) => _showError(error.message))
+        .whenComplete(() => offLoading());
   }
 
   void _back() {
@@ -37,7 +34,11 @@ class _ForgotPasswordControllerState extends State<ForgotPasswordController> imp
   }
 
   void _showError(String code) {
-    ShowAlerts.openErrorDialog(context, 'ERROR DE ENVIO', code);
+    ShowAlerts.openErrorDialog(
+        context, 
+        'ERROR DE ENVIO', 
+        ErrorMessages.getAuthErrorMessage(code)
+    );
   }
 
   Widget _showButtonOrLoading() {

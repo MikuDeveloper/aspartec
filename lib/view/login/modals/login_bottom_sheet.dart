@@ -82,6 +82,7 @@ class _LoginFormState extends State<LoginForm> {
             controller: _emailController,
             validator: FormValidations.emptyOrNullValidation,
             autovalidateMode: AutovalidateMode.onUserInteraction,
+            keyboardType: TextInputType.emailAddress,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               label: Text('Correo electrónico'),

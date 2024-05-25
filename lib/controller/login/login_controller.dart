@@ -1,8 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../model/implementation/user_repository_impl.dart';
 import '../../view/home/home_view.dart';
+import '../../view/utils/error_messages.dart';
+import '../../view/utils/show_alerts.dart';
 import '../utils/loading.dart';
 
 class LoginController extends StatefulWidget {
@@ -21,21 +23,16 @@ class LoginController extends StatefulWidget {
 }
 
 class _LoginControllerState extends State<LoginController> implements Loading {
-  final auth = FirebaseAuth.instance;
+  final userRepository = UserRepositoryImpl();
 
-  void _login () async {
-    try {
-      onLoading();
-      await auth.signInWithEmailAndPassword(
-        email: widget.emailController.text.trim(),
-        password: widget.passwordController.text
-      );
-      offLoading();
-      _goToHome();
-    } on FirebaseAuthException catch (e) {
-      offLoading();
-      _showError(e.code);
-    }
+  void _login () {
+    onLoading();
+    userRepository.login(
+      widget.emailController.text.trim(),
+      widget.passwordController.text
+    ).then((_) => _goToHome())
+    .catchError((error, stackTrace) => _showError(error.message))
+    .whenComplete(() => offLoading());
   }
 
   void _goToHome() {
@@ -43,11 +40,10 @@ class _LoginControllerState extends State<LoginController> implements Loading {
   }
 
   void _showError(String code) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        content: Text(code),
-      )
+    ShowAlerts.openErrorDialog(
+        context,
+        'Error de inicio de sesión',
+        ErrorMessages.getAuthErrorMessage(code)
     );
   }
 

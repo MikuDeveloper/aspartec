@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:aspartec/controller/login/forgot_password_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../generated/assets.dart';
 import '../../utils/validations.dart';
@@ -12,7 +15,6 @@ class ForgotPasswordBottomSheet extends StatelessWidget {
     showModalBottomSheet(
       isScrollControlled: true,
       useSafeArea: true,
-      useRootNavigator: true,
       context: context,
       builder: (context) => Padding(
         padding: EdgeInsets.only(
@@ -48,6 +50,16 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
 
+  final _urlImage = 'https://www.freepik.es/vector-gratis/ilustracion-concepto-olvide-contrasena_7070629.htm';
+
+  void _launchUrlImage() async {
+    if (await canLaunchUrl
+      (Uri.parse(_urlImage))
+    ) {
+      await launchUrl(Uri.parse(_urlImage));
+    }
+  }
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -71,6 +83,11 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
               fontWeight: FontWeight.bold
             )
           ),
+          /*TextButton(
+              onPressed: _launchUrlImage,
+              child: const Text('Imagen de storyset en Freepik')
+          ),
+          const SizedBox(height: 20),*/
           ConstrainedBox(
             constraints: const BoxConstraints(maxHeight: 400),
             child: SvgPicture.asset(Assets.picturesForgotPass),
@@ -79,6 +96,7 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
             controller: _emailController,
             validator: FormValidations.emailValidation,
             autovalidateMode: AutovalidateMode.onUserInteraction,
+            keyboardType: TextInputType.emailAddress,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               label: Text('Correo electrónico'),
