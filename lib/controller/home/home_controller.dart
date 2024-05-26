@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../generated/assets.dart';
+import '../../providers/subjects_provider.dart';
 import '../../providers/user_data_provider.dart';
 import '../../view/home/advisor/advisor_home_view.dart';
 import '../../view/home/student/student_home_view.dart';
@@ -15,6 +16,8 @@ class HomeController extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userProvider = ref.watch(userDataProvider);
+    ref.invalidate(subjectsProvider);
+
     return userProvider.when(
       data: (user) {
         switch(user.type) {
@@ -47,6 +50,8 @@ class _HomeErrorPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Center(
       child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text('Error al cargar datos de usuario.'),
           const SizedBox(height: 15),
@@ -56,8 +61,8 @@ class _HomeErrorPage extends ConsumerWidget {
           ),
           const SizedBox(height: 15),
           TextButton(
-              onPressed: ref.read(userDataProvider.notifier).loadData,
-              child: const Text('Reintentar')
+            onPressed: ref.read(userDataProvider.notifier).loadData,
+            child: const Text('Reintentar')
           )
         ],
       ),

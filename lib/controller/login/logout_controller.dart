@@ -1,8 +1,9 @@
-import 'package:aspartec/model/implementation/user_repository_impl.dart';
-import 'package:aspartec/view/login/login_view.dart';
-import 'package:aspartec/view/utils/show_alerts.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../model/implementation/user_repository_impl.dart';
+import '../../view/login/login_view.dart';
+import '../../view/utils/show_alerts.dart';
 
 class LogoutController extends StatefulWidget {
   const LogoutController({super.key});

@@ -6,7 +6,7 @@ import '../model/implementation/user_repository_impl.dart';
 
 final avatarProvider = StateProvider.autoDispose<String?>((ref) => null);
 
-final userDataProvider = StateNotifierProvider<UserDataNotifier, AsyncValue<UserEntity>>((ref) => UserDataNotifier());
+final userDataProvider = StateNotifierProvider.autoDispose<UserDataNotifier, AsyncValue<UserEntity>>((ref) => UserDataNotifier());
 
 class UserDataNotifier extends StateNotifier<AsyncValue<UserEntity>> {
   final userRepository = UserRepositoryImpl();

@@ -47,4 +47,29 @@ class ShowAlerts {
       )
     ) ?? false;
   }
+
+  static Future<bool> openDecisiveDialog(BuildContext context, String content, Icon icon, Color iconColor) async {
+    return await showDialog<bool>(
+      context: context,
+      barrierDismissible: true,
+      builder: (context) => AlertDialog(
+        content: Text(
+          content,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => context.pop(false),
+            child: const Text('Cancelar')
+          ),
+          FilledButton(
+            onPressed: () => context.pop(true),
+            child: const Text('Aceptar')
+          )
+        ],
+        icon: icon,
+        iconColor: iconColor,
+      )
+    ) ?? false;
+  }
 }
