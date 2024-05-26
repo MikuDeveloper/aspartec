@@ -1,3 +1,5 @@
+import 'package:aspartec/globals.dart';
+import 'package:aspartec/model/entities/user_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -19,7 +21,12 @@ class _LogoutControllerState extends State<LogoutController> {
     ShowAlerts.openLogoutDialog(context)
     .then((accept) {
       if (accept) {
-        userRepository.logout().then((_) => context.goNamed(LoginView.routeName));
+        userRepository.logout().then((_) {
+          studentPendingAdvicesList = [];
+          advisorPendingAdvicesList = [];
+          userData = UserEntity();
+          context.goNamed(LoginView.routeName);
+        });
       }
     });
   }
