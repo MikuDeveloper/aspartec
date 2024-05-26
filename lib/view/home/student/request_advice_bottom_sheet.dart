@@ -57,6 +57,7 @@ class _RequestAdviceFormState extends State<RequestAdviceForm> {
   late List<SubjectEntity> subjects = [];
   late List<SubjectEntity> advisors = [];
   late List<String> pending = [];
+  late List<String> pending2 = [];
   late AdviceEntity newAdvice = AdviceEntity();
 
   @override
@@ -93,7 +94,7 @@ class _RequestAdviceFormState extends State<RequestAdviceForm> {
   _setSubject(String? value, WidgetRef ref) {
     setState(() {
       newAdvice = newAdvice.copyWith(adviceSubjectName: value);
-      advisors = subjects.where((item) => item.subjectName == value && !pending.contains(item.subjectName)).toList();
+      advisors = subjects.where((item) => item.subjectName == value && !pending.contains(value)).toList();
       ref.read(registerSubjectError.notifier).state = null;
       _advisorController.clear();
     });
@@ -165,6 +166,7 @@ class _RequestAdviceFormState extends State<RequestAdviceForm> {
                 (item) => DropdownMenuEntry(
                   value: item.advisorControlNumber,
                   label: item.advisorName!,
+                  //enabled: !pending.contains(item.advisorControlNumber)
                 )
               ).toList(),
               label: const Text('Asesor'),
