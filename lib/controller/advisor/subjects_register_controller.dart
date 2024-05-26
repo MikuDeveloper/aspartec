@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../globals.dart';
 import '../../model/entities/subject_entity.dart';
 import '../../model/implementation/subjects_respository_impl.dart';
 import '../../providers/error_provider.dart';
-import '../../providers/subjects_provider.dart';
-import '../../view/utils/list_keys.dart';
 import '../../view/utils/show_alerts.dart';
 import '../utils/loading.dart';
 
@@ -27,9 +26,9 @@ class _SubjectsRegisterControllerState extends State<SubjectsRegisterController>
       onLoading();
       subjectsRepository.registerSubject(widget.subject)
       .then((_) {
-        ref.read(subjectsProvider.notifier).subjects.add(widget.subject);
-        //ref.read(subjectsProvider.notifier).currentSubjects.add(widget.subject.subjectName!);
-        _addItem(ref);
+        final length = advisorSubjectsList.length;
+        advisorSubjectsList.add(widget.subject);
+        advisorSubjectsKey.currentState!.insertItem(length);
         context.pop();
       })
       .catchError((error, stackTrace) {
@@ -41,11 +40,6 @@ class _SubjectsRegisterControllerState extends State<SubjectsRegisterController>
     if (widget.subject.subjectName == null) {
       ref.read(subjectError.notifier).state = 'Selecciona una materia de la lista';
     }
-  }
-
-  void _addItem(WidgetRef ref) {
-    int length = ref.read(subjectsProvider.notifier).subjects.length;
-    subjectsKey.currentState!.insertItem(length == 0 ? 0 : length - 1);
   }
   
   void _showAlert(String error) {

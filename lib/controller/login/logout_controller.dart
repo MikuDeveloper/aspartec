@@ -24,6 +24,7 @@ class _LogoutControllerState extends State<LogoutController> {
         userRepository.logout().then((_) {
           studentPendingAdvicesList = [];
           advisorPendingAdvicesList = [];
+          advisorSubjectsList = [];
           userData = UserEntity();
           context.goNamed(LoginView.routeName);
         });

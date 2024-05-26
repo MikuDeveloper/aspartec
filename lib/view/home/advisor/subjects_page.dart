@@ -1,48 +1,75 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../controller/advisor/subjects_delete_controller.dart';
-import '../../../model/entities/subject_entity.dart';
-import '../../../providers/subjects_provider.dart';
-import '../../utils/list_keys.dart';
+import '../../../globals.dart';
+import '../../../model/implementation/subjects_respository_impl.dart';
+import '../../utils/show_alerts.dart';
+import '../../utils/show_snackbars.dart';
 
-class SubjectsPage extends StatefulWidget {
-  final List<SubjectEntity> subjects;
-  const SubjectsPage({super.key, required this.subjects});
+class SubjectsPage extends StatelessWidget {
+  const SubjectsPage({super.key});
 
-  @override
-  State<SubjectsPage> createState() => _SubjectsPageState();
-}
-
-class _SubjectsPageState extends State<SubjectsPage> {
-  late List<SubjectEntity> subjects;
-  
-  @override
-  void initState() {
-    subjects = widget.subjects;
-    super.initState();
+  _removeItem(context, int index, String id) {
+    advisorSubjectsList.removeWhere((item) => item.id == id);
+    advisorSubjectsKey.currentState!.removeItem(
+        index, (context, animation) => SlideTransition(
+        position: animation.drive(
+            Tween(begin: const Offset(1,0), end: Offset.zero)
+                .chain(CurveTween(curve: Curves.decelerate))
+        ),
+        child: const Card(color: Colors.red, child: ListTile())
+      )
+    );
   }
-  
-  Widget _builder(context, index, animation, WidgetRef ref) {
+
+  Future<void> _delete(context, int index, String id) async {
+    final accept = await ShowAlerts.openDecisiveDialog(
+        context,
+        '¿Desea eliminar el registro de la asesoría?',
+        const Icon(Icons.delete_outline_rounded),
+        Colors.redAccent
+    );
+    if (accept) {
+      final subjectRepository = SubjectsRepositoryImpl();
+      try {
+        await subjectRepository.deleteSubject(id);
+        ShowSnackbars.openInformativeSnackBar(context, 'Registro de materia eliminado.');
+        _removeItem(context, index, id);
+      } catch (_) {
+        _showError(context);
+      }
+    }
+  }
+
+  _showError(context) {
+    ShowAlerts.openErrorDialog(
+      context,
+      'ERROR DE ELIMINACÓN',
+      'Ocurrió un error al intentar eliminar el registro, vuelva a intentarlo.'
+    );
+  }
+
+  Widget _builder(context, index, animation) {
     return SizeTransition(
       sizeFactor: animation,
       child: Card(
         child: ListTile(
-          title: Text(subjects[index].subjectName!),
-          trailing: SubjectsDeleteController(index: index, id: subjects[index].id!)
+          title: Text(advisorSubjectsList[index].subjectName!),
+          leading: const Icon(Icons.book_rounded),
+          trailing: IconButton(
+            onPressed: () => _delete(context, index, advisorSubjectsList[index].id!),
+            icon: const Icon(Icons.bookmark_remove_outlined),
+          )
         ),
       ),
     );
   }
-  
+
   @override
   Widget build(BuildContext context) {
-    return Consumer(
-      builder: (context, ref, _) => AnimatedList(
-        key: subjectsKey,
-        initialItemCount: ref.read(subjectsProvider.notifier).subjects.length,
-        itemBuilder: (context, index, animation) => _builder(context, index, animation, ref),
-      ),
+    return AnimatedList(
+      key: advisorSubjectsKey,
+      initialItemCount: advisorSubjectsList.length,
+      itemBuilder: _builder,
     );
   }
 }

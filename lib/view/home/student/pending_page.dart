@@ -1,3 +1,4 @@
+import 'package:aspartec/view/utils/lauchers.dart';
 import 'package:flutter/material.dart';
 
 import '../../../globals.dart';
@@ -29,7 +30,7 @@ class PendingPage extends StatelessWidget {
     studentPendingAdvicesKey.currentState!.removeItem(index,
       (context, animation) => SlideTransition(
         position: animation.drive(
-          Tween(begin: const Offset(1,0), end: Offset.zero,)
+          Tween(begin: const Offset(1,0), end: Offset.zero)
               .chain(CurveTween(curve: Curves.decelerate))
         ),
         child: const Card(color: Colors.red, child: ListTile())
@@ -46,19 +47,33 @@ class PendingPage extends StatelessWidget {
     );
   }
 
+  _openWhatsApp(context, String numberPhone) {
+    Launchers.openWhatsApp(context: context, phoneNumber: numberPhone);
+  }
+
 
   Widget _builder(context, index, animation) {
     return SizeTransition(
       sizeFactor: animation,
       child: Card(
-        child: ListTile(
-          title: Text(studentPendingAdvicesList[index].adviceSubjectName!),
-          subtitle: Text(studentPendingAdvicesList[index].adviceTopicName!),
-          trailing: IconButton(
-            onPressed: () => _cancelAdvice(context, studentPendingAdvicesList[index].id!, index),
-            icon: const Icon(Icons.highlight_remove_rounded)
-          ),
-        ),
+        child: Column(
+          children: [
+            ListTile(
+              title: Text(studentPendingAdvicesList[index].adviceSubjectName!),
+              subtitle: Text(studentPendingAdvicesList[index].adviceTopicName!),
+              leading: const Icon(Icons.pending_actions_rounded),
+              trailing: IconButton(
+                onPressed: () => _cancelAdvice(context, studentPendingAdvicesList[index].id!, index),
+                icon: const Icon(Icons.highlight_remove_rounded)
+              ),
+            ),
+            FilledButton.tonalIcon(
+              onPressed: () => _openWhatsApp(context, studentPendingAdvicesList[index].advisorPhoneNumber!),
+              label: const Text('Contactar'),
+              icon: const Icon(Icons.connect_without_contact_rounded)
+            )
+          ],
+        )
       ),
     );
   }

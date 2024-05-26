@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../globals.dart';
 import '../../providers/subjects_provider.dart';
 import '../../view/home/advisor/subjects_page.dart';
 import '../../view/widgets/loading_widget.dart';
@@ -13,9 +14,10 @@ class SubjectsPageController extends ConsumerWidget {
     final subjects = ref.watch(subjectsProvider);
     return subjects.when(
       data: (subjects) {
+        advisorSubjectsList = subjects;
         return RefreshIndicator(
           onRefresh: ref.read(subjectsProvider.notifier).loadSubjects,
-          child: SubjectsPage(subjects: subjects),
+          child: const SubjectsPage(),
         );
       },
       error: (error, stackTrace) => _SubjectsError(error: error, stackTrace: stackTrace),
