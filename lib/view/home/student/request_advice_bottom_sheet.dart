@@ -57,7 +57,6 @@ class _RequestAdviceFormState extends State<RequestAdviceForm> {
   late List<SubjectEntity> subjects = [];
   late List<SubjectEntity> advisors = [];
   late List<String> pending = [];
-  late List<String> pending2 = [];
   late AdviceEntity newAdvice = AdviceEntity();
 
   @override
