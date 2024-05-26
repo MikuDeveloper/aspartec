@@ -6,6 +6,7 @@ import '../../../model/entities/user_entity.dart';
 import '../../profile/profile_view.dart';
 import '../../widgets/avatar_widget.dart';
 import '../../widgets/logo_widget.dart';
+import '../student/request_advice_bottom_sheet.dart';
 import '../student/student_home_view.dart';
 import 'modals/subject_register_bottom_sheet.dart';
 
@@ -27,7 +28,7 @@ class _AdvisorHomeViewState extends State<AdvisorHomeView> {
   void initState() {
     buttons = [
       null,
-      null,
+      const RequestAdviceBottomSheet(),
       SubjectRegisterBottomSheet(user: widget.user),
       null
     ];

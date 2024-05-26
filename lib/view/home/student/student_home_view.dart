@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../controller/student/pending_page_controller.dart';
 import '../../../model/entities/user_entity.dart';
 import '../../profile/profile_view.dart';
 import '../../widgets/avatar_widget.dart';
 import '../../widgets/logo_widget.dart';
+import 'request_advice_bottom_sheet.dart';
 
 class StudentHomeView extends StatelessWidget {
   final bool hiddenBar;
@@ -49,10 +51,11 @@ class StudentHomeView extends StatelessWidget {
         ),
         body: const TabBarView(
           children: [
-            Center(child: Text('Pendientes')),
+            PendingPageController(),
             Center(child: Text('Completadas')),
           ],
-        )
+        ),
+        floatingActionButton: (hiddenBar) ? null : const RequestAdviceBottomSheet()
       )
     );
   }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../generated/assets.dart';
+import '../../globals.dart';
+import '../../providers/advices_provider.dart';
 import '../../providers/subjects_provider.dart';
 import '../../providers/user_data_provider.dart';
 import '../../view/home/advisor/advisor_home_view.dart';
@@ -17,9 +19,11 @@ class HomeController extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final userProvider = ref.watch(userDataProvider);
     ref.invalidate(subjectsProvider);
+    ref.invalidate(studentPendingProvider);
 
     return userProvider.when(
       data: (user) {
+        userData = user;
         switch(user.type) {
           case 'advisor':
             return AdvisorHomeView(user: user);
