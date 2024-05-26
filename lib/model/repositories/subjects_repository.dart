@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 import '../entities/subject_entity.dart';
 
 abstract class SubjectsRepository {
