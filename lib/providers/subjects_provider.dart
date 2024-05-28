@@ -26,7 +26,6 @@ final subjectsProvider = StateNotifierProvider<SubjectsNotifier, AsyncValue<List
 class SubjectsNotifier extends StateNotifier<AsyncValue<List<SubjectEntity>>> {
   final auth = FirebaseAuth.instance;
   final subjectsRepository = SubjectsRepositoryImpl();
-  //late List<String> currentSubjects = [];
   late List<SubjectEntity> subjects = [];
 
   SubjectsNotifier() : super(const AsyncValue.loading()) {
@@ -38,7 +37,6 @@ class SubjectsNotifier extends StateNotifier<AsyncValue<List<SubjectEntity>>> {
       try {
         state = const AsyncValue.loading();
         final data = await subjectsRepository.getAdvisorsSubjects(auth.currentUser!.email!);
-        //currentSubjects = data.map((subject) => subject.subjectName!).toList();
         subjects = data;
         state = AsyncValue.data(data);
       } catch (error, stackTrace) {

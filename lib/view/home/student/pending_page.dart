@@ -1,8 +1,8 @@
-import 'package:aspartec/view/utils/lauchers.dart';
 import 'package:flutter/material.dart';
 
 import '../../../globals.dart';
 import '../../../model/implementation/advices_repository_impl.dart';
+import '../../utils/lauchers.dart';
 import '../../utils/show_alerts.dart';
 import '../../utils/show_snackbars.dart';
 
@@ -53,14 +53,20 @@ class PendingPage extends StatelessWidget {
 
 
   Widget _builder(context, index, animation) {
+    final subject = studentPendingAdvicesList[index].adviceSubjectName!;
+    final topic = studentPendingAdvicesList[index].adviceTopicName!;
+    final advisor = studentPendingAdvicesList[index].advisorName!;
+    final advisorPhone = studentPendingAdvicesList[index].advisorPhoneNumber!;
+    final subtitle = '- Tema: $topic\n- Asesor par: $advisor';
+
     return SizeTransition(
       sizeFactor: animation,
       child: Card(
         child: Column(
           children: [
             ListTile(
-              title: Text(studentPendingAdvicesList[index].adviceSubjectName!),
-              subtitle: Text(studentPendingAdvicesList[index].adviceTopicName!),
+              title: Text(subject),
+              subtitle: Text(subtitle),
               leading: const Icon(Icons.pending_actions_rounded),
               trailing: IconButton(
                 onPressed: () => _cancelAdvice(context, studentPendingAdvicesList[index].id!, index),
@@ -68,7 +74,7 @@ class PendingPage extends StatelessWidget {
               ),
             ),
             FilledButton.tonalIcon(
-              onPressed: () => _openWhatsApp(context, studentPendingAdvicesList[index].advisorPhoneNumber!),
+              onPressed: () => _openWhatsApp(context, advisorPhone),
               label: const Text('Contactar'),
               icon: const Icon(Icons.connect_without_contact_rounded)
             )

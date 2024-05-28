@@ -64,19 +64,19 @@ class _RegisterFormState extends State<RegisterForm> {
   }
 
   void _setName(String value) {
-    setState(() { _user = _user.copyWith(firstname: value); });
+    setState(() { _user = _user.copyWith(firstname: value.trim()); });
   }
 
   void _setLastname1(String value) {
-    setState(() { _user = _user.copyWith(lastname1: value); });
+    setState(() { _user = _user.copyWith(lastname1: value.trim()); });
   }
 
   void _setLastname2(String value) {
-    setState(() { _user = _user.copyWith(lastname2: value); });
+    setState(() { _user = _user.copyWith(lastname2: value.trim()); });
   }
 
   void _setPhone(String value) {
-    setState(() { _user = _user.copyWith(phoneNumber: value); });
+    setState(() { _user = _user.copyWith(phoneNumber: value.trim()); });
   }
 
   void _setGender(String? value, WidgetRef ref) {
@@ -87,7 +87,7 @@ class _RegisterFormState extends State<RegisterForm> {
   }
 
   void _setControlNumber(String value) {
-    setState(() { _user = _user.copyWith(controlNumber: value); });
+    setState(() { _user = _user.copyWith(controlNumber: value.trim()); });
   }
 
   void _setMajor(String? value, WidgetRef ref) {
@@ -98,7 +98,7 @@ class _RegisterFormState extends State<RegisterForm> {
   }
 
   void _setEmail(String value) {
-    setState(() { _user = _user.copyWith(email: value); });
+    setState(() { _user = _user.copyWith(email: value.trim()); });
   }
 
   void _setPassword(String value) {

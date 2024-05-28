@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../controller/advisor/advices_page_controller.dart';
 import '../../../controller/advisor/subjects_page_controller.dart';
 import '../../../model/entities/user_entity.dart';
 import '../../profile/profile_view.dart';
@@ -56,7 +57,7 @@ class _AdvisorHomeViewState extends State<AdvisorHomeView> {
         ],
       ),
       body: [
-        const Center(child: Text('Asesorias')),
+        const AdvicesPageController(),
         StudentHomeView(user: widget.user, hiddenBar: true),
         const SubjectsPageController(),
         const Center(child: Text('Reportes')),
