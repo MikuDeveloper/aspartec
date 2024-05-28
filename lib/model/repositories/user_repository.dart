@@ -11,6 +11,7 @@ abstract class UserRepository {
   Future deleteUser() async {}
   Future getData(String email) async {}
   updateAvatar(File file) {}
+  Future updatePassword(String currentPassword, String newPassword) async {}
   Future getUrlFile(String path) async {}
   Future updateDataUrl(String url) async {}
 }

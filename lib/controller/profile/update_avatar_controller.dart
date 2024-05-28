@@ -1,15 +1,15 @@
 import 'dart:io';
 
-import 'package:aspartec/model/entities/user_entity.dart';
-import 'package:aspartec/view/utils/show_snackbars.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../model/entities/user_entity.dart';
 import '../../model/implementation/user_repository_impl.dart';
 import '../../providers/user_data_provider.dart';
 import '../../view/utils/show_alerts.dart';
+import '../../view/utils/show_snackbars.dart';
 import '../utils/loading.dart';
 
 class UpdateAvatarController extends StatefulWidget {

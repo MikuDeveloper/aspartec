@@ -89,6 +89,19 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
+  Future<void> updatePassword(String currentPassword, String newPassword) async {
+    try {
+      await _auth.signInWithEmailAndPassword(
+        email: _auth.currentUser?.email ?? 'none@gmail.com',
+        password: currentPassword
+      );
+      await _auth.currentUser?.updatePassword(newPassword);
+    } on FirebaseAuthException catch (e) {
+      throw Exception(e.code);
+    }
+  }
+
+  @override
   Future<String> getUrlFile(String path) async {
     try {
       return await _storage.ref(path).getDownloadURL();

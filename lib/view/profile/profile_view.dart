@@ -4,6 +4,9 @@ import 'package:go_router/go_router.dart';
 import '../../controller/login/logout_controller.dart';
 import '../../model/entities/user_entity.dart';
 import '../widgets/avatar_widget.dart';
+import 'modals/update_academic_data_bottom_sheet.dart';
+import 'modals/update_password_bottom_sheet.dart';
+import 'modals/update_personal_data_bottom_sheet.dart';
 import 'update_avatar_view.dart';
 
 class ProfileView extends StatelessWidget {
@@ -28,25 +31,10 @@ class ProfileView extends StatelessWidget {
             trailing: const Icon(Icons.arrow_forward_ios_rounded),
             onTap: () => context.pushNamed(UpdateAvatarView.routeName, extra: { 'user' : user })
           ),
-          ListTile(
-            leading: const Icon(Icons.key_rounded),
-            title: const Text('Cambiar contraseña'),
-            trailing: const Icon(Icons.arrow_forward_ios_rounded),
-            onTap: () {},
-          ),
+          const UpdatePasswordBottomSheet(),
           const Divider(),
-          ListTile(
-            leading: const Icon(Icons.person),
-            title: const Text('Datos personales'),
-            trailing: const Icon(Icons.arrow_forward_ios_rounded),
-            onTap: () {},
-          ),
-          ListTile(
-            leading: const Icon(Icons.menu_book_rounded),
-            title: const Text('Datos escolares'),
-            trailing: const Icon(Icons.arrow_forward_ios_rounded),
-            onTap: () {},
-          ),
+          const UpdatePersonalDataBottomSheet(),
+          const UpdateAcademicDataBottomSheet(),
           const Divider(),
           const LogoutController()
         ],
