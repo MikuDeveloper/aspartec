@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../controller/student/completed_page_controller.dart';
 import '../../../controller/student/pending_page_controller.dart';
 import '../../../model/entities/user_entity.dart';
 import '../../profile/profile_view.dart';
@@ -52,7 +53,7 @@ class StudentHomeView extends StatelessWidget {
         body: const TabBarView(
           children: [
             PendingPageController(),
-            Center(child: Text('Completadas')),
+            CompletedPageController(),
           ],
         ),
         floatingActionButton: (hiddenBar) ? null : const RequestAdviceBottomSheet()

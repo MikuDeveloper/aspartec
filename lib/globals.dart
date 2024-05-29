@@ -12,5 +12,8 @@ List<SubjectEntity> advisorSubjectsList = [];
 final GlobalKey<AnimatedListState> studentPendingAdvicesKey = GlobalKey<AnimatedListState>();
 List<AdviceEntity> studentPendingAdvicesList = [];
 
+//final GlobalKey<AnimatedListState> studentCompletedAdvicesKey = GlobalKey<AnimatedListState>();
+List<AdviceEntity> studentCompletedAdvicesList = [];
+
 final GlobalKey<AnimatedListState> advisorPendingAdvicesKey = GlobalKey<AnimatedListState>();
 List<AdviceEntity> advisorPendingAdvicesList = [];

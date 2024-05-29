@@ -26,6 +26,28 @@ class StudentAdvicesPending extends StateNotifier<AsyncValue<List<AdviceEntity>>
   }
 }
 
+final studentCompletedProvider = StateNotifierProvider<StudentCompletedAdvices, AsyncValue<List<AdviceEntity>>>((ref) => StudentCompletedAdvices());
+
+class StudentCompletedAdvices extends StateNotifier<AsyncValue<List<AdviceEntity>>> {
+  final advicesRepository = AdvicesRepositoryImpl();
+
+  StudentCompletedAdvices() : super(const AsyncValue.loading()) {
+    loadAdvices();
+  }
+
+  Future<void> loadAdvices() async {
+    if (mounted) {
+      state = const AsyncValue.loading();
+      try {
+        final data = await advicesRepository.getStudentAdvicesByStatus(controlNumber: userData.controlNumber!, status: 'Cerrada');
+        state = AsyncValue.data(data);
+      } catch (error, stackTrace) {
+        state = AsyncValue.error(error, stackTrace);
+      }
+    }
+  }
+}
+
 final advisorPendingProvider = StateNotifierProvider<AdvisorAdvicesPending, AsyncValue<List<AdviceEntity>>>((ref) => AdvisorAdvicesPending());
 
 class AdvisorAdvicesPending extends StateNotifier<AsyncValue<List<AdviceEntity>>> {

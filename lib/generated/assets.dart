@@ -7,5 +7,6 @@ class Assets {
   static const String picturesDataError1 = 'assets/pictures/data_error_1.png';
   static const String picturesDefaultAvatar = 'assets/pictures/default_avatar.svg';
   static const String picturesForgotPass = 'assets/pictures/forgot_pass.svg';
+  static const String picturesRatingPicture = 'assets/pictures/rating_picture.svg';
 
 }

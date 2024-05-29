@@ -23,6 +23,7 @@ class _LogoutControllerState extends State<LogoutController> {
       if (accept) {
         userRepository.logout().then((_) {
           studentPendingAdvicesList = [];
+          studentCompletedAdvicesList = [];
           advisorPendingAdvicesList = [];
           advisorSubjectsList = [];
           userData = UserEntity();

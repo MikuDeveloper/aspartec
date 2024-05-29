@@ -1,3 +1,4 @@
+import 'package:aspartec/view/utils/error_messages.dart';
 import 'package:flutter/material.dart';
 
 import '../../../globals.dart';
@@ -43,7 +44,7 @@ class PendingPage extends StatelessWidget {
     ShowAlerts.openErrorDialog(
       context,
       'ERROR DE CANCELACIÓN',
-      'Ocurrió un error al intentar cancelar la asesoría, inténtelo de nuevo.'
+      ErrorMessages.getFirestoreErrorMessage(error.message)
     );
   }
 

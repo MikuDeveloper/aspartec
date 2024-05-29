@@ -39,6 +39,45 @@ class AdvicesRepositoryImpl implements AdvicesRepository {
   }
 
   @override
+  Future<List<AdviceEntity>> getStudentPending({required String controlNumber}) async {
+    try {
+      final openQuery = await _firestore
+          .collection(_collection)
+          .where('studentControlNumber', isEqualTo: controlNumber)
+          .where('adviceStatus', isEqualTo: 'Abierta')
+          .where('adviceStudentRating', isEqualTo: 0)
+          .get();
+
+      final closedQuery = await _firestore
+          .collection(_collection)
+          .where('studentControlNumber', isEqualTo: controlNumber)
+          .where('adviceStatus', isEqualTo: 'Cerrada')
+          .where('adviceStudentRating', isEqualTo: 0)
+          .get();
+
+      final data = [...openQuery.docs, ...closedQuery.docs];
+      return data.map((doc) => AdviceEntity.fromJson(doc)).toList();
+    } on FirebaseException catch (e) {
+      throw Exception(e.code);
+    }
+  }
+
+  @override
+  Future<List<AdviceEntity>> getStudentCompleted({required String controlNumber}) async {
+    try {
+      final data = await _firestore
+          .collection(_collection)
+          .where('studentControlNumber', isEqualTo: controlNumber)
+          .where('adviceStatus', isEqualTo: 'Cerrada')
+          .where('adviceStudentRating', isGreaterThan: 0)
+          .get();
+      return data.docs.map((doc) => AdviceEntity.fromJson(doc)).toList();
+    } on FirebaseException catch (e) {
+      throw Exception(e.code);
+    }
+  }
+
+  @override
   Future<List<AdviceEntity>> getAdvisorAdvicesByStatus({required String controlNumber, required String status}) async {
     try {
       final data = await _firestore
