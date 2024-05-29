@@ -23,6 +23,7 @@ class _ForgotPasswordControllerState extends State<ForgotPasswordController> imp
   final userRepository = UserRepositoryImpl();
 
   void _sendEmail() async {
+    onLoading();
     userRepository.sendEmailForReset(widget.emailController.text.trim())
         .then((_) => _back())
         .catchError((error, stackTrace) => _showError(error.message))
