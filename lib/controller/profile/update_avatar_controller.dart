@@ -85,7 +85,7 @@ class _UpdateAvatarControllerState extends State<UpdateAvatarController> impleme
   _showError() {
     ShowAlerts.openErrorDialog(
       context,
-      'ERROR DE DE ARCHIVO',
+      'ERROR DE ARCHIVO',
       'Ocurrió un error al subir la imagen, vuelva a intertarlo.'
     );
   }

@@ -47,6 +47,7 @@ dependencies:
   url_launcher: ^6.2.6
   image_picker: ^1.1.1
   image_cropper: ^6.0.0
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:

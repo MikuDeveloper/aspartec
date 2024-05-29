@@ -1,3 +1,4 @@
+import 'package:aspartec/view/home/advisor/modals/close_advice_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 
 import '../../../globals.dart';
@@ -26,10 +27,7 @@ class AdvicesPage extends StatelessWidget {
               title: Text(subject),
               subtitle: Text(subtitle),
               leading: const Icon(Icons.menu_book_rounded),
-              /*trailing: IconButton(
-                onPressed: () => _close(context, index, advisorSubjectsList[index].id!),
-                icon: const Icon(Icons.bookmark_remove_outlined),
-              )*/
+              trailing: CloseAdviceBottomSheet(advice: advisorPendingAdvicesList[index], index: index)
             ),
             FilledButton.tonalIcon(
               onPressed: () => _openWhatsApp(context, studentPhone),
