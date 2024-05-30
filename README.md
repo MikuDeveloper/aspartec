@@ -1,6 +1,6 @@
 # aspartec
 
-Aplicación de asesorias pares en el Instituto Nacional de México, Campus Ciudad Hidalgo.
+Advices app for ITSCH.
 
 ## Getting Started
 
