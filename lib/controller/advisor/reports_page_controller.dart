@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../globals.dart';
 import '../../providers/advices_provider.dart';
+import '../../providers/subjects_provider.dart';
 import '../../view/home/advisor/reports_page.dart';
 import '../../view/widgets/loading_widget.dart';
 
@@ -19,9 +20,17 @@ class ReportsPageController extends ConsumerWidget {
         return provider2.when(
           data: (canceledAdvices) {
             advisorCanceledAdvicesList = canceledAdvices;
-            return RefreshIndicator(
-              onRefresh: ref.read(advisorCompletedProvider.notifier).loadAdvices,
-              child: const ReportsPage(),
+            final provider3 = ref.watch(subjectsProvider);
+            return provider3.when(
+              data: (subjects) {
+                advisorSubjectsList = subjects;
+                return RefreshIndicator(
+                  onRefresh: ref.read(advisorCompletedProvider.notifier).loadAdvices,
+                  child: const ReportsPage(),
+                );
+              },
+              error: (error, stackTrace) => _ReportsPageError(error: error, stackTrace: stackTrace), 
+              loading: () => const LoadingWidget(title: 'Cargando materias...')
             );
           },
           error: (error, stackTrace) => _ReportsPageError(error: error, stackTrace: stackTrace),
