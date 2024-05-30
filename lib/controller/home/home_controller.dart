@@ -20,6 +20,8 @@ class HomeController extends ConsumerWidget {
     final userProvider = ref.watch(userDataProvider);
     ref.invalidate(subjectsProvider);
     ref.invalidate(studentPendingProvider);
+    ref.invalidate(advisorCompletedProvider);
+    ref.invalidate(advisorCanceledProvider);
 
     return userProvider.when(
       data: (user) {

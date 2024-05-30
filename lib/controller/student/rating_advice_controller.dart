@@ -36,12 +36,14 @@ class _RatingAdviceControllerState extends State<RatingAdviceController> impleme
   @override
   Widget build(BuildContext context) {
     return Consumer(
-      builder: (context, ref, _) => FilledButton(
-        onPressed: () {
-          if (widget.rating != 0) _updateStudentRating(ref);
-        },
-        child: const Text('Registrar calificación'),
-      ),
+      builder: (context, ref, _) => isLoading
+        ? const CircularProgressIndicator()
+        : FilledButton(
+            onPressed: () {
+              if (widget.rating != 0) _updateStudentRating(ref);
+            },
+            child: const Text('Registrar calificación'),
+          ),
     );
   }
 

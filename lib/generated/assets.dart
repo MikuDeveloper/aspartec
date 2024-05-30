@@ -2,6 +2,7 @@
 class Assets {
   Assets._();
 
+  static const String docsReportTemplate = 'assets/docs/report_template.pdf';
   static const String logosLogoAspartecDark = 'assets/logos/logo_aspartec_dark.png';
   static const String logosLogoAspartecLigth = 'assets/logos/logo_aspartec_ligth.png';
   static const String picturesDataError1 = 'assets/pictures/data_error_1.png';

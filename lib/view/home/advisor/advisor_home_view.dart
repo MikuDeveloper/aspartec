@@ -1,3 +1,5 @@
+import 'package:aspartec/controller/advisor/reports_page_controller.dart';
+import 'package:aspartec/view/home/advisor/reports_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -60,7 +62,7 @@ class _AdvisorHomeViewState extends State<AdvisorHomeView> {
         const AdvicesPageController(),
         StudentHomeView(user: widget.user, hiddenBar: true),
         const SubjectsPageController(),
-        const Center(child: Text('Reportes')),
+        const ReportsPageController()
       ][currentIndex],
       bottomNavigationBar: NavigationBar(
         labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,

@@ -17,3 +17,5 @@ List<AdviceEntity> studentCompletedAdvicesList = [];
 
 final GlobalKey<AnimatedListState> advisorPendingAdvicesKey = GlobalKey<AnimatedListState>();
 List<AdviceEntity> advisorPendingAdvicesList = [];
+List<AdviceEntity> advisorCompletedAdvicesList = [];
+List<AdviceEntity> advisorCanceledAdvicesList = [];

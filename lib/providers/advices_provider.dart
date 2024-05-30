@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../globals.dart';
@@ -62,6 +63,50 @@ class AdvisorAdvicesPending extends StateNotifier<AsyncValue<List<AdviceEntity>>
       try {
         state = const AsyncValue.loading();
         final data = await advicesRepository.getAdvisorAdvicesByStatus(controlNumber: userData.controlNumber!, status: 'Abierta');
+        state = AsyncValue.data(data);
+      } catch (error, stackTrace) {
+        state = AsyncValue.error(error, stackTrace);
+      }
+    }
+  }
+}
+
+final advisorCompletedProvider = StateNotifierProvider<AdvisorAdvicesCompleted, AsyncValue<List<AdviceEntity>>>((ref) => AdvisorAdvicesCompleted());
+
+class AdvisorAdvicesCompleted extends StateNotifier<AsyncValue<List<AdviceEntity>>> {
+  final advicesRepository = AdvicesRepositoryImpl();
+
+  AdvisorAdvicesCompleted() : super(const AsyncValue.loading()) {
+    loadAdvices();
+  }
+
+  Future<void> loadAdvices() async {
+    if (mounted) {
+      try {
+        state = const AsyncValue.loading();
+        final data = await advicesRepository.getAdvisorAdvicesByStatus(controlNumber: userData.controlNumber!, status: 'Cerrada');
+        state = AsyncValue.data(data);
+      } catch (error, stackTrace) {
+        state = AsyncValue.error(error, stackTrace);
+      }
+    }
+  }
+}
+
+final advisorCanceledProvider = StateNotifierProvider<AdvisorAdvicesCanceled, AsyncValue<List<AdviceEntity>>>((ref) => AdvisorAdvicesCanceled());
+
+class AdvisorAdvicesCanceled extends StateNotifier<AsyncValue<List<AdviceEntity>>> {
+  final advicesRepository = AdvicesRepositoryImpl();
+
+  AdvisorAdvicesCanceled() : super(const AsyncValue.loading()) {
+    loadAdvices();
+  }
+
+  Future<void> loadAdvices() async {
+    if (mounted) {
+      try {
+        state = const AsyncValue.loading();
+        final data = await advicesRepository.getAdvisorAdvicesByStatus(controlNumber: userData.controlNumber!, status: 'Cancelada');
         state = AsyncValue.data(data);
       } catch (error, stackTrace) {
         state = AsyncValue.error(error, stackTrace);
