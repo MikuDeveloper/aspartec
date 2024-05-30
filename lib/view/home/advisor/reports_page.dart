@@ -66,7 +66,11 @@ class _ReportsPageState extends State<ReportsPage> {
     }
 
     setState(() => advicesNumber = completedAdvicesNumber +  canceledAdvicesNumber);
-    setState(() => rating = rating / advisorCompletedAdvicesList.length );
+    setState(() {
+      if (advisorCompletedAdvicesList.isNotEmpty) {
+        rating = rating / advisorCompletedAdvicesList.length;
+      }
+    });
     super.initState();
   }
 
@@ -206,7 +210,7 @@ class _ReportsPageState extends State<ReportsPage> {
     nanoField.readOnly = true;
 
 
-    File('$directoryPath/reporte-de-asesorias-$dateText.pdf').writeAsBytesSync(await document.save());
+    File('$directoryPath/reporte-de-asesorias_${userData.controlNumber!}_$dateText.pdf').writeAsBytesSync(await document.save());
     document.dispose();
     _showMessage();
   }
@@ -231,6 +235,7 @@ class _ReportsPageState extends State<ReportsPage> {
             )
           ],
         ),
+        const SizedBox(height: 15),
         const Text('Información general (deslice para actualizar)', style: TextStyle(fontWeight: FontWeight.w500)),
         const Divider(),
         Row(
@@ -337,7 +342,7 @@ class _ReportsPageState extends State<ReportsPage> {
               initialRating: rating,
               ignoreGestures: true,
               allowHalfRating: true,
-              minRating: 1,
+              minRating: 0,
               itemCount: 5,
               direction: Axis.horizontal,
               itemPadding: const EdgeInsets.symmetric(horizontal: 10),
