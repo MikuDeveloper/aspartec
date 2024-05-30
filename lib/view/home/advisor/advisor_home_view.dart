@@ -1,9 +1,8 @@
-import 'package:aspartec/controller/advisor/reports_page_controller.dart';
-import 'package:aspartec/view/home/advisor/reports_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../controller/advisor/advices_page_controller.dart';
+import '../../../controller/advisor/reports_page_controller.dart';
 import '../../../controller/advisor/subjects_page_controller.dart';
 import '../../../model/entities/user_entity.dart';
 import '../../profile/profile_view.dart';
