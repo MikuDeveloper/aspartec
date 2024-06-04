@@ -133,7 +133,7 @@ class _ReportsPageState extends State<ReportsPage> {
 
     // Control number field
     PdfTextBoxField controlField = form.fields[3] as PdfTextBoxField;
-    majorField.font = PdfStandardFont(PdfFontFamily.helvetica, 9);
+    controlField.font = PdfStandardFont(PdfFontFamily.helvetica, 9);
     controlField.text = '${userData.controlNumber}';
     controlField.readOnly = true;
 
