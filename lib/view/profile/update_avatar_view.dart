@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:aspartec/controller/profile/update_avatar_controller.dart';
 import 'package:aspartec/model/entities/user_entity.dart';
 import 'package:aspartec/model/implementation/user_repository_impl.dart';

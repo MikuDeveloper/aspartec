@@ -52,5 +52,13 @@
       <string>sms</string>
       <string>tel</string>
     </array>
+
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>Necesitamos acceso a tu biblioteca de fotos para actualizar tu avatar.</string>
+    <key>NSCameraUsageDescription</key>
+    <string>Necesitamos acceso a tu cámara para tomar una foto de tu avatar.</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>Necesitamos permiso para guardar la imagen recortada en tu biblioteca de fotos.</string>
+
 </dict>
 </plist>
