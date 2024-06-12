@@ -27,7 +27,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace = "mx.tecnm.cdhidalgo.aspartecmas"
+    namespace = "mx.tecnm.cdhidalgo.aspartec.2024"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -38,7 +38,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "mx.tecnm.cdhidalgo.aspartecmas"
+        applicationId = "mx.tecnm.cdhidalgo.aspartec.2024"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         multiDexEnabled true
