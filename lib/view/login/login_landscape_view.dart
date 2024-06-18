@@ -24,7 +24,8 @@ class LoginLandscapeView extends StatelessWidget {
                 SizedBox(width: 50),
                 Column(
                   children: [
-                    Text('PROGRAMA DE ASESORÍAS ACADÉMICAS'),
+                    Text('PROGRAMA ACADÉMICO DE'),
+                    Text('ASESORÍAS PARES'),
                     Text('DE CIENCIAS BÁSICAS')
                   ],
                 ),

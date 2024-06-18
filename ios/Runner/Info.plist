@@ -45,9 +45,22 @@
 	<string>Main</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>UISupportsDocumentBrowser</key>
 	<true/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+    	<string>whatsapp</string>
+	</array>
+	<key>UIRequiredDeviceCapabilities</key>
+    <array>
+        <string>armv7</string>
+    </array>
+	<key>NSDocumentsFolderUsageDescription</key>
+    <string>Esta aplicación necesita acceso a la carpeta Documentos para guardar y leer archivos PDF.</string>
 </dict>
 </plist>
