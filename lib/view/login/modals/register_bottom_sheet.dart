@@ -151,7 +151,7 @@ class _RegisterFormState extends State<RegisterForm> {
           ),
 
           /********************************************************************/
-          const Text('Datos personales'),
+          const Text('Datos Personales'),
           const Divider(),
           const SizedBox(height: 10),
           TextFormField(

@@ -23,7 +23,7 @@ class AdvisorHomeView extends StatefulWidget {
 class _AdvisorHomeViewState extends State<AdvisorHomeView> {
 
   late int currentIndex = 0;
-  final List<String> titles = ['Módulo asesor', 'Módulo estudiante', 'Mis materias', 'Mis reportes'];
+  final List<String> titles = ['Módulo Asesor', 'Módulo Estudiante', 'Mis Materias', 'Mi Reporte'];
   late List<Widget?> buttons = [null, null, null, null];
 
   @override

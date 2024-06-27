@@ -24,8 +24,7 @@ class LoginPortraitView extends StatelessWidget {
               children: [
                 LogoWidget(),
                 SizedBox(height: 20),
-                Text('PROGRAMA ACADÉMICO DE'),
-                Text('ASESORÍAS PARES'),
+                Text('ASESORÍAS ACADÉMICAS'),
                 Text('DE CIENCIAS BÁSICAS')
               ],
             ),

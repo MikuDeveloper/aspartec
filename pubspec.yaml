@@ -1,6 +1,6 @@
 name: aspartec
-description: "Aplicación de Asesorias Académicas del Instituto Nacional de México,
-  Campus Ciudad Hidalgo."
+description: "Aplicación de Asesorias Académicas del Instituto Nacional de
+  México, Campus Ciudad Hidalgo."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -44,6 +44,7 @@ dependencies:
   flutter_riverpod: ^2.5.1
   flutter_svg: ^2.0.10+1
   go_router: ^14.1.3
+  google_fonts: ^6.2.1
   image_cropper: ^6.0.0
   image_picker: ^1.1.1
   path: any
