@@ -16,38 +16,36 @@ class CloseAdviceBottomSheet extends StatelessWidget {
 
   _showModal(context) {
     showModalBottomSheet(
-        isScrollControlled: true,
-        useSafeArea: true,
-        isDismissible: false,
-        context: context,
-        builder: (context) => Padding(
-              padding: EdgeInsets.only(
-                  top: 30,
-                  right: 15,
-                  bottom: MediaQuery.of(context).viewInsets.bottom,
-                  left: 15),
-              child: SingleChildScrollView(
-                child: _CloseAdviceView(advice: advice, index: index),
-              ),
-            ));
+      isScrollControlled: true,
+      useSafeArea: true,
+      isDismissible: false,
+      context: context,
+      builder: (context) => Padding(
+        padding: EdgeInsets.only(
+          top: 30,
+          right: 15,
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+          left: 15),
+          child: SingleChildScrollView(
+            child: _CloseAdviceView(advice: advice, index: index),
+          ),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    // return Column(
-    //   children: [
-    //     IconButton(
-    //       onPressed: () => _showModal(context),
-    //       //icon: const Icon(Icons.grading_rounded,
-    //       icon: const Icon(Icons.add_task,
-    //       size: 24,
-    //       //color: Color.fromARGB(255, 0, 145, 255),
-    //       )
-    //     ),
-    //   ],
-    // );
-    return InkWell(
-      onTap: () => _showModal(context),
+    return Column(
+      children: [
+        IconButton(
+          onPressed: () => _showModal(context),
+          //icon: const Icon(Icons.grading_rounded,
+          icon: const Icon(Icons.add_task,
+          size: 28,
+          color: Color.fromARGB(255, 0, 145, 255),
+          )
+        ),
+      ],
     );
   }
 }
