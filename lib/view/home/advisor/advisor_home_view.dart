@@ -1,13 +1,15 @@
+import 'package:aspartec/view/widgets/icon_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../controller/advisor/advices_page_controller.dart';
 import '../../../controller/advisor/reports_page_controller.dart';
 import '../../../controller/advisor/subjects_page_controller.dart';
+import '../../../generated/assets.dart';
 import '../../../model/entities/user_entity.dart';
 import '../../profile/profile_view.dart';
 import '../../widgets/avatar_widget.dart';
-import '../../widgets/logo_widget.dart';
 import '../student/request_advice_bottom_sheet.dart';
 import '../student/student_home_view.dart';
 import 'modals/subject_register_bottom_sheet.dart';
@@ -42,10 +44,19 @@ class _AdvisorHomeViewState extends State<AdvisorHomeView> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text(titles[currentIndex]),
+        title: Text(
+          titles[currentIndex],
+          style: GoogleFonts.ptSans(
+            textStyle: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
         leading: const Padding(
           padding: EdgeInsets.all(5),
-          child: LogoWidget()
+          //child: LogoWidget()
+          child: IconWidget()
         ),
         actions: [
           Padding(

@@ -78,20 +78,21 @@ class PendingPage extends StatelessWidget {
           bool? result = await _openWhatsApp(context, advisorPhone);
           return result ?? false;  // Ensure a boolean is returned
         },
-        child: Card(
-          child: Column(
-            children: [
-              ListTile(
-                title: Text(subject,
-                  style: GoogleFonts.ptSans(
-                    textStyle: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+          child: Card(
+            child: Column(
+              children: [
+                ListTile(
+                  title: Text(subject,
+                    style: GoogleFonts.ptSans(
+                      textStyle: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
-                subtitle: Expanded(
-                  child: Text(subtitle,
+                  subtitle: Text(subtitle,
                     overflow: TextOverflow.ellipsis,
                     style: GoogleFonts.ptSans(
                       textStyle: const TextStyle(
@@ -100,24 +101,24 @@ class PendingPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                ),
-                leading: const Icon(Icons.pending_actions_rounded,
-                  size: 28,
-                ),
-                trailing: Column(
-                  children: [
-                    IconButton(
-                      onPressed: () => _cancelAdvice(context, studentPendingAdvicesList[index].id!, index),
-                      icon: const Icon(Icons.highlight_remove_rounded,
-                        size: 28,
-                        color: Colors.redAccent,
+                  leading: const Icon(Icons.pending_actions_rounded,
+                    size: 28,
+                  ),
+                  trailing: Column(
+                    children: [
+                      IconButton(
+                        onPressed: () => _cancelAdvice(context, studentPendingAdvicesList[index].id!, index),
+                        icon: const Icon(Icons.highlight_remove_rounded,
+                          size: 28,
+                          color: Colors.redAccent,
+                        ),
                       ),
-                    ),
-                  ]  
+                    ]  
+                  ),
                 ),
-              ),
-            ],
-          )
+              ],
+            )
+          ),
         ),
       ),
     );

@@ -26,7 +26,6 @@ class _AdvicesPageState extends State<AdvicesPage> {
 
     return SizeTransition(
       sizeFactor: animation,
-
       child: Dismissible(
         key: Key(studentPhone),
         direction: DismissDirection.startToEnd,
@@ -59,15 +58,13 @@ class _AdvicesPageState extends State<AdvicesPage> {
                       ),
                     ),
                   ),
-                  subtitle: Expanded(
-                    child: Text(
-                      subtitle,
-                      overflow: TextOverflow.ellipsis,
-                      style: GoogleFonts.ptSans(
-                        textStyle: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.normal,
-                        ),
+                  subtitle: Text(
+                    subtitle,
+                    overflow: TextOverflow.ellipsis,
+                    style: GoogleFonts.ptSans(
+                      textStyle: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal,
                       ),
                     ),
                   ),

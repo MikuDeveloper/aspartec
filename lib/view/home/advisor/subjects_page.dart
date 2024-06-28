@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../globals.dart';
 import '../../../model/implementation/subjects_respository_impl.dart';
@@ -24,7 +25,7 @@ class SubjectsPage extends StatelessWidget {
   Future<void> _delete(context, int index, String id) async {
     final accept = await ShowAlerts.openDecisiveDialog(
         context,
-        '¿Desea eliminar el registro de la asesoría?',
+        '¿Desea eliminar el registro de la Materia?',
         const Icon(Icons.delete_outline_rounded),
         Colors.redAccent
     );
@@ -51,14 +52,28 @@ class SubjectsPage extends StatelessWidget {
   Widget _builder(context, index, animation) {
     return SizeTransition(
       sizeFactor: animation,
-      child: Card(
-        child: ListTile(
-          title: Text(advisorSubjectsList[index].subjectName!),
-          leading: const Icon(Icons.book_rounded),
-          trailing: IconButton(
-            onPressed: () => _delete(context, index, advisorSubjectsList[index].id!),
-            icon: const Icon(Icons.bookmark_remove_outlined),
-          )
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
+        child: Card(
+          child: ListTile(
+            title: Text(
+              advisorSubjectsList[index].subjectName!,
+              style: GoogleFonts.ptSans(
+                        textStyle: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+            ),
+            leading: const Icon(Icons.folder_open),
+            trailing: IconButton(
+              onPressed: () => _delete(context, index, advisorSubjectsList[index].id!),
+              icon: const Icon(Icons.delete,
+                color: Colors.red,
+                size: 24,
+              ),
+            )
+          ),
         ),
       ),
     );
