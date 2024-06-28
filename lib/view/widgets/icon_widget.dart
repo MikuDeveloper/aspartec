@@ -13,8 +13,8 @@ class IconWidget extends StatelessWidget {
     return ConstrainedBox(
       constraints: BoxConstraints(maxHeight: height * 0.5),
       child: (lightTheme)
-          ? Image.asset(Assets.iconAspartecLigth)
-          : Image.asset(Assets.iconAspartecDark)
+          ? Image.asset(Assets.iconAspartecLigth,)
+          : Image.asset(Assets.iconAspartecDark,)
     );
   }
 }

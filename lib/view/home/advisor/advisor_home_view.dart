@@ -54,7 +54,7 @@ class _AdvisorHomeViewState extends State<AdvisorHomeView> {
           ),
         ),
         leading: const Padding(
-          padding: EdgeInsets.all(5),
+          padding: EdgeInsets.all(7),
           //child: LogoWidget()
           child: IconWidget()
         ),
