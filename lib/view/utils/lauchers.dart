@@ -1,4 +1,4 @@
-import 'dart:ffi';
+//import 'dart:ffi';
 import 'dart:io';
 import 'package:url_launcher/url_launcher.dart';
 import 'show_alerts.dart';
@@ -15,10 +15,10 @@ class Launchers {
 
     if (soyAsesor) {
       message =
-          '¡Hola!, Soy tu Asesor Par $name de AsparTec, estoy listo para resolver tus dudas de la materia de $subject, quedo pendiente de tu respuesta para empezar a trabajar, ¡Saludos!';
+          '¡Hola!, Soy tu Asesor Par $name de AsparTec, estoy listo para resolver tus dudas de la materia de $subject, quedo pendiente de tu respuesta para empezar a trabajar con tu inquietud, ¡Saludos!';
     } else {
       message =
-          '¡Hola!, Soy $name, estoy solicitando una asesoría por AsparTec de la materia de $subject, quedo pendiente de su amable respuesta para empezar a trabajar, ¡Saludos!';
+          '¡Hola!, Soy $name, estoy solicitando una asesoría por medio de AsparTec, referente a la materia de $subject, quedo pendiente de sus indicaciones para proceder a resolver mis dudas, ¡Saludos!';
     }
     // const message =
     //     'Hola, te he solicitado una asesoría a través de la app ASPARTEC. ¡Vamos a trabajar!';
