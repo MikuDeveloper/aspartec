@@ -16,41 +16,42 @@ class PendingPage extends StatelessWidget {
         context,
         '¿Desea cancelar la asesoría?',
         const Icon(Icons.free_cancellation_rounded),
-        Colors.redAccent
-    );
+        Colors.redAccent);
 
     if (accept) {
       final advicesRepository = AdvicesRepositoryImpl();
-      advicesRepository.cancelAdvice(id)
-      .then((_) => _removeItem(context, index, id))
-      .catchError((error, stackTrace) => _showError(context, error, stackTrace));
+      advicesRepository
+          .cancelAdvice(id)
+          .then((_) => _removeItem(context, index, id))
+          .catchError(
+              (error, stackTrace) => _showError(context, error, stackTrace));
     }
   }
 
   _removeItem(BuildContext context, int index, String id) {
     studentPendingAdvicesList.removeWhere((item) => item.id == id);
-    studentPendingAdvicesKey.currentState!.removeItem(index,
-      (context, animation) => SlideTransition(
-        position: animation.drive(
-          Tween(begin: const Offset(1,0), end: Offset.zero)
-              .chain(CurveTween(curve: Curves.decelerate))
-        ),
-        child: const Card(color: Colors.red, child: ListTile())
-      )
-    );
+    studentPendingAdvicesKey.currentState!.removeItem(
+        index,
+        (context, animation) => SlideTransition(
+            position: animation.drive(
+                Tween(begin: const Offset(1, 0), end: Offset.zero)
+                    .chain(CurveTween(curve: Curves.decelerate))),
+            child: const Card(color: Colors.red, child: ListTile())));
     ShowSnackbars.openInformativeSnackBar(context, 'Asesoría cancelada');
   }
 
   _showError(context, error, stackTrace) {
-    ShowAlerts.openErrorDialog(
-      context,
-      'ERROR DE CANCELACIÓN',
-      ErrorMessages.getFirestoreErrorMessage(error.message)
-    );
+    ShowAlerts.openErrorDialog(context, 'ERROR DE CANCELACIÓN',
+        ErrorMessages.getFirestoreErrorMessage(error.message));
   }
 
-  _openWhatsApp(context, String numberPhone) {
-    Launchers.openWhatsApp(context: context, phoneNumber: numberPhone);
+  _openWhatsApp(context, String numberPhone, String name, String subject, bool soyAsesor) {
+    Launchers.openWhatsApp(
+      context: context,
+      phoneNumber: numberPhone,
+      name: name,
+      subject: subject,
+      soyAsesor: soyAsesor);
   }
 
   Widget _builder(context, index, animation) {
@@ -58,6 +59,7 @@ class PendingPage extends StatelessWidget {
     final topic = studentPendingAdvicesList[index].adviceTopicName!;
     final advisor = studentPendingAdvicesList[index].advisorName!;
     final advisorPhone = studentPendingAdvicesList[index].advisorPhoneNumber!;
+    final studentName = studentPendingAdvicesList[index].studentName!;
     final subtitle = 'Tema: $topic\nAsesor: $advisor';
 
     return SizeTransition(
@@ -75,50 +77,52 @@ class PendingPage extends StatelessWidget {
           ),
         ),
         confirmDismiss: (direction) async {
-          bool? result = await _openWhatsApp(context, advisorPhone);
-          return result ?? false;  // Ensure a boolean is returned
+          bool? result = await _openWhatsApp(context, advisorPhone, studentName, subject, false);
+          return result ?? false; // Ensure a boolean is returned
         },
         child: Padding(
           padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
           child: Card(
-            child: Column(
-              children: [
-                ListTile(
-                  title: Text(subject,
-                    style: GoogleFonts.ptSans(
-                      textStyle: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
+              child: Column(
+            children: [
+              ListTile(
+                title: Text(
+                  subject,
+                  style: GoogleFonts.ptSans(
+                    textStyle: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ),
-                  subtitle: Text(subtitle,
-                    overflow: TextOverflow.ellipsis,
-                    style: GoogleFonts.ptSans(
-                      textStyle: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.normal,
-                      ),
-                    ),
-                  ),
-                  leading: const Icon(Icons.pending_actions_rounded,
-                    size: 28,
-                  ),
-                  trailing: Column(
-                    children: [
-                      IconButton(
-                        onPressed: () => _cancelAdvice(context, studentPendingAdvicesList[index].id!, index),
-                        icon: const Icon(Icons.highlight_remove_rounded,
-                          size: 28,
-                          color: Colors.redAccent,
-                        ),
-                      ),
-                    ]  
                   ),
                 ),
-              ],
-            )
-          ),
+                subtitle: Text(
+                  subtitle,
+                  overflow: TextOverflow.ellipsis,
+                  style: GoogleFonts.ptSans(
+                    textStyle: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                ),
+                leading: const Icon(
+                  Icons.pending_actions_rounded,
+                  size: 28,
+                ),
+                trailing: Column(children: [
+                  IconButton(
+                    onPressed: () => _cancelAdvice(
+                        context, studentPendingAdvicesList[index].id!, index),
+                    icon: const Icon(
+                      Icons.highlight_remove_rounded,
+                      size: 28,
+                      color: Colors.redAccent,
+                    ),
+                  ),
+                ]),
+              ),
+            ],
+          )),
         ),
       ),
     );

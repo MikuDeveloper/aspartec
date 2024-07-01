@@ -6,7 +6,7 @@ import '../../../controller/student/pending_page_controller.dart';
 import '../../../model/entities/user_entity.dart';
 import '../../profile/profile_view.dart';
 import '../../widgets/avatar_widget.dart';
-import '../../widgets/logo_widget.dart';
+import '../../widgets/icon_widget.dart';
 import 'request_advice_bottom_sheet.dart';
 
 class StudentHomeView extends StatelessWidget {
@@ -26,7 +26,7 @@ class StudentHomeView extends StatelessWidget {
           title: (hiddenBar) ? null :  const Text('Mis asesorías'),
           leading: (hiddenBar) ? null : const Padding(
             padding: EdgeInsets.all(5),
-            child: LogoWidget()
+            child: IconWidget()
           ),
           actions: (hiddenBar) ? null : [
             Padding(

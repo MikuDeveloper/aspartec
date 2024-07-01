@@ -13,8 +13,13 @@ class AdvicesPage extends StatefulWidget {
 }
 
 class _AdvicesPageState extends State<AdvicesPage> {
-  _openWhatsApp(context, String numberPhone) {
-    Launchers.openWhatsApp(context: context, phoneNumber: numberPhone);
+  _openWhatsApp(context, String numberPhone, String name, String subject, bool soyAsesor) {
+    Launchers.openWhatsApp(
+      context: context,
+      phoneNumber: numberPhone,
+      name: name,
+      subject: subject,
+      soyAsesor: soyAsesor);
   }
 
   Widget _builder(context, index, animation) {
@@ -22,6 +27,7 @@ class _AdvicesPageState extends State<AdvicesPage> {
     final topic = advisorPendingAdvicesList[index].adviceTopicName!;
     final student = advisorPendingAdvicesList[index].studentName!;
     final studentPhone = advisorPendingAdvicesList[index].studentPhoneNumber!;
+    final advisorName = advisorPendingAdvicesList[index].advisorName!;
     final subtitle = 'Tema: $topic\n$student';
 
     return SizeTransition(
@@ -39,8 +45,14 @@ class _AdvicesPageState extends State<AdvicesPage> {
           ),
         ),
         confirmDismiss: (direction) async {
-          bool? result = await _openWhatsApp(context, studentPhone);
-          return result ?? false;  // Ensure a boolean is returned
+          bool? result = await _openWhatsApp(
+            context,
+            studentPhone,
+            advisorName,
+            subject,
+            true,
+          );
+          return result ?? false; // Ensure a boolean is returned
         },
         child: Padding(
           padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),

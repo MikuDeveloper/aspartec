@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../controller/advisor/subjects_register_controller.dart';
 import '../../../../model/entities/subject_entity.dart';
@@ -38,8 +39,18 @@ class SubjectRegisterBottomSheet extends StatelessWidget {
       onPressed: () {
         _showModal(context);
       },
-      label: const Text('Registrar'),
+      label: Text('Registrar',
+      style: GoogleFonts.ptSans(
+          textStyle: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
       icon: const Icon(Icons.collections_bookmark_outlined),
+      backgroundColor: Colors.pinkAccent,
+      foregroundColor: Colors.white,
+      elevation: 3.0,
     );
   }
 }
@@ -90,7 +101,7 @@ class _SubjectRegisterFormState extends State<_SubjectRegisterForm> {
           const Icon(Icons.keyboard_arrow_down_rounded),
           const SizedBox(height: 10),
           const Text(
-            'Registro de materia',
+            'Registro de Materia',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
           ),
           const SizedBox(height: 25),
@@ -107,7 +118,7 @@ class _SubjectRegisterFormState extends State<_SubjectRegisterForm> {
             }
           ),
           const SizedBox(height: 25),
-          const Text('Mis datos de asesor'),
+          const Text('Mis Datos de Asesor Par'),
           const Divider(),
           const SizedBox(height: 20),
           TextFormField(
@@ -115,7 +126,7 @@ class _SubjectRegisterFormState extends State<_SubjectRegisterForm> {
             autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
-              label: Text('Número de control'),
+              label: Text('Número de Control'),
               prefixIcon: Icon(Icons.person_search_rounded)
             ),
             readOnly: true,
@@ -127,7 +138,7 @@ class _SubjectRegisterFormState extends State<_SubjectRegisterForm> {
             autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
-              label: Text('Programa educativo'),
+              label: Text('Programa Educativo'),
               prefixIcon: Icon(Icons.menu_book)
             ),
             readOnly: true,

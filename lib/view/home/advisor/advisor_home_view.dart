@@ -25,7 +25,7 @@ class AdvisorHomeView extends StatefulWidget {
 class _AdvisorHomeViewState extends State<AdvisorHomeView> {
 
   late int currentIndex = 0;
-  final List<String> titles = ['Módulo Asesor', 'Módulo Estudiante', 'Mis Materias', 'Mi Reporte'];
+  final List<String> titles = ['Módulo Asesor Par', 'Módulo Estudiante', 'Mis Materias', 'Mi Reporte'];
   late List<Widget?> buttons = [null, null, null, null];
 
   @override
@@ -84,7 +84,7 @@ class _AdvisorHomeViewState extends State<AdvisorHomeView> {
           NavigationDestination(
             icon: Icon(Icons.calendar_month_outlined),
             selectedIcon: Icon(Icons.calendar_month_rounded),
-            label: 'Asesorías',
+            label: 'Asesor Par',
           ),
           NavigationDestination(
             icon: Icon(Icons.school_outlined),
@@ -99,7 +99,7 @@ class _AdvisorHomeViewState extends State<AdvisorHomeView> {
           NavigationDestination(
             icon: Icon(Icons.assessment_outlined),
             selectedIcon: Icon(Icons.assessment_rounded),
-            label: 'Reportes',
+            label: 'Reporte',
           )
         ],
       ),

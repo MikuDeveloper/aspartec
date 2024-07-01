@@ -36,7 +36,7 @@ class CompletedPage extends StatelessWidget {
                     ),
                   ),
                   subtitle: Text(
-                    'Asesor: $advisor',
+                    'Asesor Par: $advisor',
                     overflow: TextOverflow.ellipsis,
                     style: GoogleFonts.ptSans(
                       textStyle: const TextStyle(
@@ -52,13 +52,14 @@ class CompletedPage extends StatelessWidget {
                     minRating: 1,
                     itemCount: 5,
                     direction: Axis.horizontal,
-                    itemPadding: const EdgeInsets.symmetric(horizontal: 5),
+                    itemPadding: const EdgeInsets.symmetric(horizontal: 3),
                     itemBuilder: (BuildContext context, _) =>
                     const Icon(
                       Icons.star_rate_rounded,
                       color: Colors.amberAccent,
                     ),
                     onRatingUpdate: (_) {},
+                    itemSize: 24.0,
                 )
                     : RatingAdviceBottomSheet(id: id, advisor: advisor),
                 const SizedBox(height: 10)

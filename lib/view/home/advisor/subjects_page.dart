@@ -58,19 +58,22 @@ class SubjectsPage extends StatelessWidget {
           child: ListTile(
             title: Text(
               advisorSubjectsList[index].subjectName!,
+              overflow: TextOverflow.ellipsis,
               style: GoogleFonts.ptSans(
-                        textStyle: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                textStyle: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
-            leading: const Icon(Icons.folder_open),
+            leading: const Icon(Icons.folder_open,
+              size: 20,
+            ),
             trailing: IconButton(
               onPressed: () => _delete(context, index, advisorSubjectsList[index].id!),
               icon: const Icon(Icons.delete,
                 color: Colors.red,
-                size: 24,
+                size: 20,
               ),
             )
           ),
