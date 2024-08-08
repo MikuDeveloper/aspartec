@@ -34,24 +34,23 @@ class _UpdateAvatarViewState extends State<UpdateAvatarView> {
         compressQuality: 100,
         maxWidth: 700,
         maxHeight: 700,
-        cropStyle: CropStyle.circle,
         uiSettings: [
           AndroidUiSettings(
             toolbarTitle: 'Recortar imagen',
             toolbarColor: Colors.blue,
             toolbarWidgetColor: Colors.white,
             initAspectRatio: CropAspectRatioPreset.square,
-            lockAspectRatio: true
+            lockAspectRatio: true,
+            cropStyle: CropStyle.circle
           ),
           IOSUiSettings(
             title: 'Recortar imagen',
             doneButtonTitle: 'Hecho',
-            cancelButtonTitle: 'Cancelar'
+            cancelButtonTitle: 'Cancelar',
+            cropStyle: CropStyle.circle
           ),
           WebUiSettings(
             context: context,
-            mouseWheelZoom: true,
-            enableZoom: true
           )
         ]
     );

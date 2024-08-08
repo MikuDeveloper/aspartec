@@ -65,30 +65,32 @@ class _CloseAdviceViewState extends State<_CloseAdviceView> {
   Future<void> _cropImage(String path) async {
     final croppedFile = await ImageCropper.platform.cropImage(
         sourcePath: path,
-        aspectRatioPresets: [
-          CropAspectRatioPreset.original,
-          CropAspectRatioPreset.ratio4x3,
-        ],
         compressQuality: 100,
         maxWidth: 1000,
         maxHeight: 1000,
         uiSettings: [
           AndroidUiSettings(
-              toolbarTitle: 'Recortar imagen',
-              toolbarColor: Colors.blue,
-              toolbarWidgetColor: Colors.white,
-              initAspectRatio: CropAspectRatioPreset.square,
-              lockAspectRatio: true
+            toolbarTitle: 'Recortar imagen',
+            toolbarColor: Colors.blue,
+            toolbarWidgetColor: Colors.white,
+            initAspectRatio: CropAspectRatioPreset.square,
+            lockAspectRatio: true,
+            aspectRatioPresets: [
+              CropAspectRatioPreset.original,
+              CropAspectRatioPreset.ratio4x3,
+            ],
           ),
           IOSUiSettings(
-              title: 'Recortar imagen',
-              doneButtonTitle: 'Hecho',
-              cancelButtonTitle: 'Cancelar'
+            title: 'Recortar imagen',
+            doneButtonTitle: 'Hecho',
+            cancelButtonTitle: 'Cancelar',
+            aspectRatioPresets: [
+              CropAspectRatioPreset.original,
+              CropAspectRatioPreset.ratio4x3,
+            ],
           ),
           WebUiSettings(
-              context: context,
-              mouseWheelZoom: true,
-              enableZoom: true
+            context: context
           )
         ]
     );
