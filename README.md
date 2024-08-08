@@ -18,7 +18,7 @@ samples, guidance on mobile development, and a full API reference.
 # Prod
 Para cambiar el nombre de la aplicación:
 '''
-flutter pub run change_app_package_name:main mx.tecnm.cdhidalgo.aspartecmas
+flutter pub run change_app_package_name:main mx.tecnm.cdhidalgo.aspartec
 '''
 
 Para cambiar el icono de la aplicación:
