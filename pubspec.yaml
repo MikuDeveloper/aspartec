@@ -50,6 +50,7 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   syncfusion_flutter_pdf: ^26.2.8
   file_picker: ^8.0.3
+  flutter_native_splash: ^2.4.1
 
 dev_dependencies:
   flutter_test:
@@ -106,3 +107,13 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+flutter_native_splash:
+  color: "#ffffff"
+  color_dark: "#000000"
+  image: assets/logos/logo_aspartec_ligth.png
+  image_dark: assets/logos/logo_aspartec_dark.png
+
+  android_12:
+    image: assets/logos/logo_aspartec_ligth.png
+    image_dark: assets/logos/logo_aspartec_dark.png
