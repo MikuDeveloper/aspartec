@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "589298269714",
+    "project_id": "aspartec-2a528",
+    "storage_bucket": "aspartec-2a528.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:589298269714:android:ee634d30d7052d1a06e2cb",
+        "android_client_info": {
+          "package_name": "mx.tecnm.cdhidalgo.aspartec"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCczqCi2D30zvNRSzT3rT5srB7RTN08NwY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

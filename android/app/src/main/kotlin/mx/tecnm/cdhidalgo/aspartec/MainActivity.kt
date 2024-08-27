@@ -1,4 +1,4 @@
-package mx.tecnm.cdhidalgo.aspartec.2024
+package mx.tecnm.cdhidalgo.aspartec
 
 import io.flutter.embedding.android.FlutterActivity
 
