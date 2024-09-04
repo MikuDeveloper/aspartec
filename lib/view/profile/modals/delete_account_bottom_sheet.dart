@@ -1,3 +1,4 @@
+import 'package:aspartec/controller/profile/delete_account_controller.dart';
 import 'package:aspartec/model/entities/user_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
@@ -48,6 +49,16 @@ class _PersonalDataState extends State<_PersonalData> {
 
   late UserEntity _user = UserEntity();
   var userName = "";
+  final _passwordController = TextEditingController();
+
+  late bool _obscureText = true;
+
+  _toggleObscureText() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
 
   @override
   void initState() {
@@ -116,7 +127,28 @@ class _PersonalDataState extends State<_PersonalData> {
             initialValue: toFormattedPhoneNumber(_user.phoneNumber!),
             readOnly: true,
           ),
-          const SizedBox(height: 150),
+          const SizedBox(height: 15),
+          TextFormField(
+            controller: _passwordController,
+            validator: FormValidations.emptyOrNullValidation,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            keyboardType: TextInputType.visiblePassword,
+            obscureText: _obscureText,
+            decoration: InputDecoration(
+              border: const OutlineInputBorder(),
+              labelText: 'Contraseña',
+              prefixIcon: const Icon(Icons.key_rounded),
+              suffixIcon: IconButton(
+                onPressed: _toggleObscureText,
+                icon: _obscureText
+                  ? const Icon(Icons.visibility_off)
+                  : const Icon(Icons.visibility)
+              )
+            )
+          ),
+          const SizedBox(height: 50),
+          DeleteAccountController(formKey: _formKey, email: _user.email, password: _passwordController.text),
+          const SizedBox(height: 50),
         ],
       ),
     );

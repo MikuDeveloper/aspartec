@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../controller/advisor/advices_page_controller.dart';
 import '../../../controller/advisor/reports_page_controller.dart';
 import '../../../controller/advisor/subjects_page_controller.dart';
-import '../../../generated/assets.dart';
+//import '../../../generated/assets.dart';
 import '../../../model/entities/user_entity.dart';
 import '../../profile/profile_view.dart';
 import '../../widgets/avatar_widget.dart';
