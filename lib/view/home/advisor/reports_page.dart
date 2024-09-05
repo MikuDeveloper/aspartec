@@ -4,6 +4,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 
 import '../../../generated/assets.dart';
@@ -224,120 +225,22 @@ class _ReportsPageState extends State<ReportsPage> {
     return ListView(
       padding: const EdgeInsets.all(10),
       children: [
-        Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            FilledButton.icon(
-              onPressed: _generateReport,
-              label: const Text('Generar reporte mensual'),
-              icon: const Icon(Icons.data_thresholding_outlined),
-            )
-          ],
-        ),
-        const SizedBox(height: 15),
-        const Text('Información general (deslice para actualizar)', style: TextStyle(fontWeight: FontWeight.w500)),
-        const Divider(),
-        Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text('Asesorías impartidas:'),
-            Text('$advicesNumber')
-          ],
-        ),
-        const SizedBox(height: 20),
-        Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text('Asesorías completadas:'),
-            Text('$completedAdvicesNumber')
-          ],
-        ),
         const SizedBox(height: 10),
-        Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text('Asesorías canceladas:'),
-            Text('$canceledAdvicesNumber')
-          ],
-        ),
-        const SizedBox(height: 30),
-
-        const Text('Asesorías impartidas por carrera', style: TextStyle(fontWeight: FontWeight.w500)),
-        const Divider(),
-        const SizedBox(height: 15),
-        Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text('Ingeniería en Sistemas Computacionales'),
-            Text('$sistemas')
-          ],
-        ),
-        const SizedBox(height: 10),
-        Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text('Ingeniería en Tecnologías de la Información'),
-            Text('$tics')
-          ],
-        ),
-        const SizedBox(height: 10),
-        Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text('Ingeniería Mecatrónica'),
-            Text('$meca')
-          ],
-        ),
-        const SizedBox(height: 10),
-        Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text('Ingeniería Industrial'),
-            Text('$tics')
-          ],
-        ),
-        const SizedBox(height: 10),
-        Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text('Ingeniería en Gestión Empresarial'),
-            Text('$gestion')
-          ],
-        ),
-        const SizedBox(height: 10),
-        Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text('Ingeniería Bioquímica'),
-            Text('$bioquimica')
-          ],
-        ),
-        const SizedBox(height: 10),
-        Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text('Ingeniería en Nanotecnología'),
-            Text('$nano')
-          ],
-        ),
-        const SizedBox(height: 30),
         Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text('Puntuación promedio: ${rating.toStringAsFixed(1)}', style: const TextStyle(fontWeight: FontWeight.w500)),
+            Text('Puntuación promedio: ${rating.toStringAsFixed(1)}',
+              overflow: TextOverflow.ellipsis,
+              style: GoogleFonts.ptSans(
+                textStyle: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              //style: const TextStyle(fontWeight: FontWeight.w500),
+            ),
             RatingBar.builder(
               initialRating: rating,
               ignoreGestures: true,
@@ -345,14 +248,300 @@ class _ReportsPageState extends State<ReportsPage> {
               minRating: 0,
               itemCount: 5,
               direction: Axis.horizontal,
-              itemPadding: const EdgeInsets.symmetric(horizontal: 10),
+              itemPadding: const EdgeInsets.symmetric(horizontal: 7),
               itemBuilder: (BuildContext context, _) =>
               const Icon(Icons.star_rate_rounded, color: Colors.amberAccent),
-              onRatingUpdate: (_) {}
+              onRatingUpdate: (_) {},
+              itemSize: 30.0,
             ),
           ],
         ),
         const SizedBox(height: 30),
+
+        //const SizedBox(height: 15),
+        Text('Información General',
+          style: GoogleFonts.ptSans(
+            textStyle: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        const Divider(),
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Asesorías Solicitadas',
+              style: GoogleFonts.ptSans(
+                textStyle: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ),
+            Text('$advicesNumber',
+            style: GoogleFonts.ptSans(
+                textStyle: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            )
+          ],
+        ),
+        const SizedBox(height: 10),
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Asesorías Completadas',
+            style: GoogleFonts.ptSans(
+                textStyle: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),  
+            ),
+            Text('$completedAdvicesNumber',
+            style: GoogleFonts.ptSans(
+                textStyle: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 10),
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Asesorías Canceladas',
+            style: GoogleFonts.ptSans(
+                textStyle: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ),
+            Text('$canceledAdvicesNumber',
+            style: GoogleFonts.ptSans(
+                textStyle: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 30),
+
+        Text('Asesorías por Programa',
+          style: GoogleFonts.ptSans(
+            textStyle: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        //style: TextStyle(fontWeight: FontWeight.w500)),
+        const Divider(),
+        const SizedBox(height: 10),
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Ingeniería en Sistemas Computacionales',
+              overflow: TextOverflow.ellipsis,
+              style: GoogleFonts.ptSans(
+                textStyle: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ),
+            Text('$sistemas',
+              style: GoogleFonts.ptSans(
+                textStyle: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 10),
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Ingeniería en Tecnologías de la Información',
+              overflow: TextOverflow.ellipsis,
+              style: GoogleFonts.ptSans(
+                textStyle: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ),
+            Text('$tics',
+            style: GoogleFonts.ptSans(
+                textStyle: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 10),
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Ingeniería Mecatrónica',
+              overflow: TextOverflow.ellipsis,
+              style: GoogleFonts.ptSans(
+                textStyle: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ),
+            Text('$meca',
+              style: GoogleFonts.ptSans(
+                textStyle: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 10),
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Ingeniería Industrial',
+              overflow: TextOverflow.ellipsis,
+              style: GoogleFonts.ptSans(
+                textStyle: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ),
+            Text('$industrial',
+              style: GoogleFonts.ptSans(
+                textStyle: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 10),
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Ingeniería en Gestión Empresarial',
+              overflow: TextOverflow.ellipsis,
+              style: GoogleFonts.ptSans(
+                textStyle: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ),
+            Text('$gestion',
+              style: GoogleFonts.ptSans(
+                textStyle: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 10),
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Ingeniería Bioquímica',
+              overflow: TextOverflow.ellipsis,
+              style: GoogleFonts.ptSans(
+                textStyle: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ),
+            Text('$bioquimica',
+              style: GoogleFonts.ptSans(
+                textStyle: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 10),
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Ingeniería en Nanotecnología',
+              overflow: TextOverflow.ellipsis,
+              style: GoogleFonts.ptSans(
+                textStyle: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ),
+            Text('$nano',
+              style: GoogleFonts.ptSans(
+                textStyle: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+
+        const SizedBox(height: 30),
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FilledButton.icon(
+              onPressed: _generateReport,
+              label: Text('Generar PDF',
+                style: GoogleFonts.ptSans(
+                  textStyle: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              icon: const Icon(Icons.data_thresholding_outlined),
+              style: ButtonStyle(
+                backgroundColor: WidgetStateProperty.all<Color>(Colors.pinkAccent), // Cambia a tu color deseado
+                foregroundColor: WidgetStateProperty.all<Color>(Colors.white),
+                elevation: WidgetStateProperty.all<double>(3.0), // Cambia a tu color de texto deseado
+          ),
+            )
+          ],
+        ),
+        
       ],
     );
   }

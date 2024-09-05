@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../controller/student/advice_register_controller.dart';
 import '../../../globals.dart';
@@ -37,8 +38,18 @@ class RequestAdviceBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton.extended(
       onPressed: () => _showModal(context),
-      label: const Text('Solicitar'),
-      icon: const Icon(Icons.add_rounded)
+      label: Text('Solicitar',
+        style: GoogleFonts.ptSans(
+          textStyle: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      icon: const Icon(Icons.add_rounded),
+      backgroundColor: Colors.pinkAccent,
+      foregroundColor: Colors.white,
+      elevation: 3.0,
     );
   }
 }

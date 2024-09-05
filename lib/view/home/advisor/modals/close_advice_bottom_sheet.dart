@@ -11,7 +11,8 @@ import '../../../../model/entities/advice_entity.dart';
 class CloseAdviceBottomSheet extends StatelessWidget {
   final AdviceEntity advice;
   final int index;
-  const CloseAdviceBottomSheet({super.key, required this.advice, required this.index});
+  const CloseAdviceBottomSheet(
+      {super.key, required this.advice, required this.index});
 
   _showModal(context) {
     showModalBottomSheet(
@@ -21,23 +22,30 @@ class CloseAdviceBottomSheet extends StatelessWidget {
       context: context,
       builder: (context) => Padding(
         padding: EdgeInsets.only(
-            top: 30,
-            right: 15,
-            bottom: MediaQuery.of(context).viewInsets.bottom,
-            left: 15
-        ),
-        child: SingleChildScrollView(
-          child: _CloseAdviceView(advice: advice, index: index),
-        ),
-      )
+          top: 30,
+          right: 15,
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+          left: 15),
+          child: SingleChildScrollView(
+            child: _CloseAdviceView(advice: advice, index: index),
+          ),
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () => _showModal(context),
-      icon: const Icon(Icons.grading_rounded),
+    return Column(
+      children: [
+        IconButton(
+          onPressed: () => _showModal(context),
+          //icon: const Icon(Icons.grading_rounded,
+          icon: const Icon(Icons.add_task,
+          size: 28,
+          color: Color.fromARGB(255, 0, 145, 255),
+          )
+        ),
+      ],
     );
   }
 }
@@ -78,20 +86,14 @@ class _CloseAdviceViewState extends State<_CloseAdviceView> {
               toolbarColor: Colors.blue,
               toolbarWidgetColor: Colors.white,
               initAspectRatio: CropAspectRatioPreset.square,
-              lockAspectRatio: true
-          ),
+              lockAspectRatio: true),
           IOSUiSettings(
               title: 'Recortar imagen',
               doneButtonTitle: 'Hecho',
-              cancelButtonTitle: 'Cancelar'
-          ),
+              cancelButtonTitle: 'Cancelar'),
           WebUiSettings(
-              context: context,
-              mouseWheelZoom: true,
-              enableZoom: true
-          )
-        ]
-    );
+              context: context, mouseWheelZoom: true, enableZoom: true)
+        ]);
     if (croppedFile != null) {
       setState(() {
         _selectedFile = File(croppedFile.path);
@@ -107,18 +109,14 @@ class _CloseAdviceViewState extends State<_CloseAdviceView> {
       children: [
         const Icon(Icons.keyboard_arrow_down_rounded),
         const SizedBox(height: 10),
-        const Text(
-          'Cierre de asesoría',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
-        ),
+        const Text('Cierre Asesoría',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
         const SizedBox(height: 20),
-        const Text(
-          'Para cerrar la asesoría debes subir una '
-              'evidencia del trabajo realizado durante la misma '
-              'y calificar el desempeño del estudiante. '
-              'Posteriormente el estudiante también tendrá que darte una '
-              'calificación.'
-        ),
+        const Text('Para cerrar la asesoría debes subir una '
+            'evidencia del trabajo realizado durante la misma '
+            'y calificar el desempeño del estudiante. '
+            'Posteriormente el estudiante también tendrá que asignar una '
+            'calificación.'),
         const SizedBox(height: 20),
         FilledButton.icon(
           onPressed: () => _pickImage(ImageSource.camera),
@@ -144,33 +142,35 @@ class _CloseAdviceViewState extends State<_CloseAdviceView> {
       children: [
         const Icon(Icons.keyboard_arrow_down_rounded),
         const SizedBox(height: 10),
-        const Text(
-          'Cierre de asesoría',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
-        ),
+        const Text('Cierre de asesoría',
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
         const SizedBox(height: 20),
         ConstrainedBox(
           constraints: const BoxConstraints(maxHeight: 400),
           child: Image.file(_selectedFile!),
         ),
         const SizedBox(height: 30),
-        const Text('Asigna una calificación al estudiante:', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+        const Text('Asigna una calificación al estudiante:',
+            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
         Text(widget.advice.studentName ?? ''),
         const SizedBox(height: 20),
         RatingBar.builder(
-          initialRating: 0,
-          minRating: 1,
-          itemCount: 5,
-          direction: Axis.horizontal,
-          itemPadding: const EdgeInsets.symmetric(horizontal: 10),
-          itemBuilder: (BuildContext context, _) =>
-          const Icon(Icons.star_rate_rounded, color: Colors.amberAccent),
-          onRatingUpdate: (double value) {
-            setState(() => rating = value.toInt());
-          }
-        ),
+            initialRating: 0,
+            minRating: 1,
+            itemCount: 5,
+            direction: Axis.horizontal,
+            itemPadding: const EdgeInsets.symmetric(horizontal: 10),
+            itemBuilder: (BuildContext context, _) =>
+                const Icon(Icons.star_rate_rounded, color: Colors.amberAccent),
+            onRatingUpdate: (double value) {
+              setState(() => rating = value.toInt());
+            }),
         const SizedBox(height: 30),
-        CloseAdviceController(advice: widget.advice, file: _selectedFile!, rating: rating, index: widget.index),
+        CloseAdviceController(
+            advice: widget.advice,
+            file: _selectedFile!,
+            rating: rating,
+            index: widget.index),
         const SizedBox(height: 30),
       ],
     );
@@ -181,4 +181,3 @@ class _CloseAdviceViewState extends State<_CloseAdviceView> {
     return _selectedFile == null ? _setOptions() : _setImageAndClose();
   }
 }
-

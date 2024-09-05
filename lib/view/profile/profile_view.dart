@@ -1,12 +1,13 @@
+import 'package:aspartec/view/profile/modals/modals.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../controller/login/logout_controller.dart';
 import '../../model/entities/user_entity.dart';
 import '../widgets/avatar_widget.dart';
-import 'modals/update_academic_data_bottom_sheet.dart';
-import 'modals/update_password_bottom_sheet.dart';
-import 'modals/update_personal_data_bottom_sheet.dart';
+//import 'modals/update_academic_data_bottom_sheet.dart';
+//import 'modals/update_password_bottom_sheet.dart';
+//import 'modals/update_personal_data_bottom_sheet.dart';
 import 'update_avatar_view.dart';
 
 class ProfileView extends StatelessWidget {
@@ -35,6 +36,8 @@ class ProfileView extends StatelessWidget {
           const Divider(),
           const UpdatePersonalDataBottomSheet(),
           const UpdateAcademicDataBottomSheet(),
+          const Divider(),
+          const DeleteAccountBottomSheet(),
           const Divider(),
           const LogoutController()
         ],

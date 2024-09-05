@@ -2,6 +2,7 @@ import 'package:aspartec/providers/error_provider.dart';
 import 'package:aspartec/view/utils/form_values.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
 import '../../../controller/login/register_controller.dart';
 import '../../../model/entities/user_entity.dart';
@@ -75,8 +76,16 @@ class _RegisterFormState extends State<RegisterForm> {
     setState(() { _user = _user.copyWith(lastname2: value.trim()); });
   }
 
+  //void _setPhone(String value) {
+  //  setState(() { _user = _user.copyWith(phoneNumber: value.trim()); });
+  //}
+
   void _setPhone(String value) {
-    setState(() { _user = _user.copyWith(phoneNumber: value.trim()); });
+    setState(() { 
+      // Elimina todos los caracteres no numéricos
+      final rawPhone = toNumericString(value);
+      _user = _user.copyWith(phoneNumber: rawPhone);
+    });
   }
 
   void _setGender(String? value, WidgetRef ref) {
@@ -142,7 +151,7 @@ class _RegisterFormState extends State<RegisterForm> {
           ),
 
           /********************************************************************/
-          const Text('Datos personales'),
+          const Text('Datos Personales'),
           const Divider(),
           const SizedBox(height: 10),
           TextFormField(
@@ -180,10 +189,25 @@ class _RegisterFormState extends State<RegisterForm> {
             onChanged: _setLastname2,
           ),
           const SizedBox(height: 15),
+          // TextFormField(
+          //   validator: FormValidations.phoneNumberValidation,
+          //   autovalidateMode: AutovalidateMode.onUserInteraction,
+          //   keyboardType: TextInputType.phone,
+          //   decoration: const InputDecoration(
+          //     border: OutlineInputBorder(),
+          //     label: Text('Teléfono'),
+          //     prefixIcon: Icon(Icons.phone_rounded)
+          //   ),
+          //   onChanged: _setPhone,
+          // ),
+
           TextFormField(
             validator: FormValidations.phoneNumberValidation,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             keyboardType: TextInputType.phone,
+            inputFormatters: [
+              MaskedInputFormatter('(###) ###-####'),
+            ],
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               label: Text('Teléfono'),
@@ -191,6 +215,7 @@ class _RegisterFormState extends State<RegisterForm> {
             ),
             onChanged: _setPhone,
           ),
+
           const SizedBox(height: 15),
           Consumer(builder: (context, ref, _) =>
             DropdownMenu(
@@ -229,7 +254,7 @@ class _RegisterFormState extends State<RegisterForm> {
               ).toList(),
               leadingIcon: const Icon(Icons.menu_book),
               expandedInsets: EdgeInsets.zero,
-              label: const Text('Programa educativo'),
+              label: const Text('Programa Educativo'),
               errorText: ref.watch(majorError),
               onSelected: (value) => _setMajor(value, ref),
             ),
@@ -277,4 +302,8 @@ class _RegisterFormState extends State<RegisterForm> {
       ),
     );
   }
+}
+
+String toNumericString(String value) {
+  return value.replaceAll(RegExp(r'[^0-9]'), '');
 }
